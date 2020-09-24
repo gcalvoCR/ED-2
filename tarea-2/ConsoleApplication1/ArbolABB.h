@@ -1,6 +1,8 @@
 #ifndef ARBOLABB_H
 #define ARBOLABB_H
 #include <string>
+#include <iostream>
+#include <sstream>
 #include "Nodo.h"
 using namespace std;
 
@@ -16,10 +18,13 @@ public:
 
     //METODOS
     // Insertar en árbol ordenado:
-    bool insertarDato(Nodo* const&, int);
+    bool insertarDato(int);
+    bool buscarPI(Nodo* nodo, int pDato);
+    bool estaVacio();
     string PreOrden(Nodo*);
     string InOrden();
     string PostOrden();
+   
 
 private:
     Nodo* raiz;

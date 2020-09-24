@@ -34,3 +34,11 @@ Nodo* Nodo::getIzq() const {
 void Nodo::setIzq(Nodo* izq) {
     Nodo::izq = izq;
 }
+
+//METODOS
+bool Nodo::esHoja() {
+    return izq == nullptr && der == nullptr;
+}
+bool Nodo::esInteriorUnHijo() {
+    return (izq == nullptr && der != nullptr) || (izq != nullptr && der == nullptr);
+}

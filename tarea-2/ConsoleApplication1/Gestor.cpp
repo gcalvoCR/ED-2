@@ -1,12 +1,11 @@
 #include "Gestor.h"
 
 void Gestor::insertarEnABB(int pDato) {
-	arbol.insertarDato(arbol.getRaiz(), pDato);
+	arbol.insertarDato(pDato);
 }
 
 string Gestor::mostrarPreOrden() {
-	string msg = arbol.PreOrden(arbol.getRaiz());
-	return msg;
+	return arbol.PreOrden(arbol.getRaiz());
 }
 
 string Gestor::mostrarInOrden() {

@@ -9,6 +9,10 @@ public:
     Nodo(int, Nodo* der, Nodo* izq);
     Nodo(int);
 
+    //METODOS
+    bool esHoja();
+    bool esInteriorUnHijo();
+
     //GETTERS & SETTERS
     int getDato() const;
     void setDato(int info);
@@ -17,7 +21,6 @@ public:
     Nodo* getIzq() const;
     void setIzq(Nodo*);
 
-protected:
     int dato;
     Nodo* der;
     Nodo* izq;
