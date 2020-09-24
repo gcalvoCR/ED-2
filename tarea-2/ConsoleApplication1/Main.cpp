@@ -100,7 +100,7 @@ void insertarEnABB() {
         }
     } while (!valid);
 
-    gestor->insertarEnABB(input);
+    cout << gestor->insertarEnABB(input) << endl;
 }
 
 void mostrarPreOrden() {

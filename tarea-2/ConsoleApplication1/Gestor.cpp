@@ -1,7 +1,15 @@
 #include "Gestor.h"
 
-void Gestor::insertarEnABB(int pDato) {
-	arbol.insertarDato(pDato);
+string Gestor::insertarEnABB(int pDato) {
+	bool cond = arbol.insertarDato(pDato);
+	string msg;
+	if (cond) {
+		msg = "Numero entero agregado con exito.";
+	}
+	else {
+		msg = "Numero entero se encuentra repetido. Intente de nuevo.";
+	}
+	return msg;
 }
 
 string Gestor::mostrarPreOrden() {

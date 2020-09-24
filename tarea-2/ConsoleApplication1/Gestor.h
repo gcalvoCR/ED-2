@@ -10,7 +10,7 @@ class Gestor
 private:
 	ArbolABB arbol;
 public:
-	void insertarEnABB(int);
+	string insertarEnABB(int);
 	string mostrarPreOrden();
 	string mostrarInOrden();
 	string mostrarPostOrden();
