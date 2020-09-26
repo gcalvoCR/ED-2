@@ -29,6 +29,7 @@ int main()
 
     do
     {
+        system("CLS");
         cout << "-------------------------------------" << endl;
         cout << "Favor digite un numero del menu:" << endl;
         cout << "1. Insertar dato en arbol binario de busqueda (ABB)." << endl;
@@ -38,6 +39,7 @@ int main()
         cout << "0. Salir." << endl;
         cout << "-------------------------------------" << endl;
         cin >> answer;
+        system("CLS");
 
         menu(answer);
 
@@ -63,12 +65,15 @@ int menu(int answer)
         break;
     case 2:
         mostrarPreOrden();
+        system("PAUSE");
         break;
     case 3:
         mostrarInOrden();
+        system("PAUSE");
         break;
     case 4:
         mostrarPostOrden();
+        system("PAUSE");
         break;
     case 0:
         cout << "Gracias por usar el sistema." << endl;

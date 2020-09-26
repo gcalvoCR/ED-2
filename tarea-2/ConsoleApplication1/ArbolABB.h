@@ -22,8 +22,8 @@ public:
     bool buscarPI(Nodo* nodo, int pDato);
     bool estaVacio();
     string PreOrden(Nodo*);
-    string InOrden();
-    string PostOrden();
+    string InOrden(Nodo*);
+    string PostOrden(Nodo*);
    
 
 private:
