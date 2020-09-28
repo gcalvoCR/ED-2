@@ -17,9 +17,9 @@ string Gestor::mostrarPreOrden() {
 }
 
 string Gestor::mostrarInOrden() {
-	return "";
+	return  arbol.InOrden(arbol.getRaiz());
 }
 
 string Gestor::mostrarPostOrden() {
-	return "";
+	return arbol.PostOrden(arbol.getRaiz());
 }

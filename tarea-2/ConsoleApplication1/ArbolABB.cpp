@@ -1,4 +1,5 @@
 #include "ArbolABB.h"
+#include "Helper.h"
 
 //CONSTRUCTOR
 ArbolABB::ArbolABB()
@@ -58,11 +59,16 @@ bool ArbolABB::estaVacio() {
 
 string  ArbolABB::PreOrden(Nodo* raiz) {
     string rslt = "";
-    std::stringstream sstm;
+    Helper helper;
+    stringstream sstm;
+
     if (raiz != NULL) {
         // PREORDEN: RAIZ -- IZQUIERDA -- DERECHA (RID)
         sstm << raiz->getDato() << " " << PreOrden(raiz->getIzq()) << " " << PreOrden(raiz->getDer());
         rslt += sstm.str();
+
+        // Paso para formatear un poco el string
+        rslt = helper.ReplaceAll(rslt);
     }
     else if (estaVacio()) {
         return "Arbol binario de busqueda vacio.";
@@ -70,10 +76,40 @@ string  ArbolABB::PreOrden(Nodo* raiz) {
     return rslt;
 }
 
-string ArbolABB::InOrden() {
-    return "";
+string ArbolABB::InOrden(Nodo* raiz) {
+    string rslt = "";
+    Helper helper;
+    stringstream sstm;
+
+    if (raiz != NULL) {
+        // PREORDEN: IZQUIERDA -- RAIZ -- DERECHA (IRD)
+        sstm << InOrden(raiz->getIzq())  << " " << raiz->getDato() << " " << InOrden(raiz->getDer());
+        rslt += sstm.str();
+
+        // Paso para formatear un poco el string
+        rslt = helper.ReplaceAll(rslt);
+    }
+    else if (estaVacio()) {
+        return "Arbol binario de busqueda vacio.";
+    }
+    return rslt;
 }
 
-string ArbolABB::PostOrden() {
-    return "";
+string ArbolABB::PostOrden(Nodo* raiz) {
+    string rslt = "";
+    Helper helper;
+    stringstream sstm;
+
+    if (raiz != NULL) {
+        // PREORDEN: IZQUIERDA -- DERECHA -- RAIZ (IDR)
+        sstm << PostOrden(raiz->getIzq()) << " " << PostOrden(raiz->getDer()) << " " << raiz->getDato();
+        rslt += sstm.str();
+
+        // Paso para formatear un poco el string
+        rslt = helper.ReplaceAll(rslt);
+    }
+    else if (estaVacio()) {
+        return "Arbol binario de busqueda vacio.";
+    }
+    return rslt;
 }
