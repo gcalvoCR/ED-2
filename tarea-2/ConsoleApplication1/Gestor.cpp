@@ -13,13 +13,13 @@ string Gestor::insertarEnABB(int pDato) {
 }
 
 string Gestor::mostrarPreOrden() {
-	return arbol.PreOrden(arbol.getRaiz());
+	return arbol.preOrden();
 }
 
 string Gestor::mostrarInOrden() {
-	return  arbol.InOrden(arbol.getRaiz());
+	return  arbol.inOrden();
 }
 
 string Gestor::mostrarPostOrden() {
-	return arbol.PostOrden(arbol.getRaiz());
+	return arbol.postOrden();
 }

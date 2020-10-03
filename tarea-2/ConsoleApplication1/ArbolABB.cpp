@@ -19,8 +19,7 @@ void ArbolABB::setRaiz(Nodo* raiz) {
 
 bool ArbolABB::insertarDato(int pDato) {
     if (this->raiz == nullptr) {
-        Nodo* nuevo = new Nodo();
-        nuevo->setDato(pDato);
+        Nodo* nuevo = new Nodo(pDato);
         this->raiz = nuevo;
     }
     else {
@@ -57,14 +56,29 @@ bool ArbolABB::estaVacio() {
     return false;
 }
 
-string  ArbolABB::PreOrden(Nodo* raiz) {
+string ArbolABB::preOrden()
+{
+    return PreOrdenRecursivo(getRaiz());
+}
+
+string ArbolABB::inOrden()
+{
+    return InOrdenRecursivo(getRaiz());
+}
+
+string ArbolABB::postOrden()
+{
+    return PostOrdenRecursivo(getRaiz());
+}
+
+string  ArbolABB::PreOrdenRecursivo(Nodo* raiz) {
     string rslt = "";
     Helper helper;
     stringstream sstm;
 
     if (raiz != NULL) {
         // PREORDEN: RAIZ -- IZQUIERDA -- DERECHA (RID)
-        sstm << raiz->getDato() << " " << PreOrden(raiz->getIzq()) << " " << PreOrden(raiz->getDer());
+        sstm << raiz->getDato() << " " << PreOrdenRecursivo(raiz->getIzq()) << " " << PreOrdenRecursivo(raiz->getDer());
         rslt += sstm.str();
 
         // Paso para formatear un poco el string
@@ -76,14 +90,14 @@ string  ArbolABB::PreOrden(Nodo* raiz) {
     return rslt;
 }
 
-string ArbolABB::InOrden(Nodo* raiz) {
+string ArbolABB::InOrdenRecursivo(Nodo* raiz) {
     string rslt = "";
     Helper helper;
     stringstream sstm;
 
     if (raiz != NULL) {
         // PREORDEN: IZQUIERDA -- RAIZ -- DERECHA (IRD)
-        sstm << InOrden(raiz->getIzq())  << " " << raiz->getDato() << " " << InOrden(raiz->getDer());
+        sstm << InOrdenRecursivo(raiz->getIzq())  << " " << raiz->getDato() << " " << InOrdenRecursivo(raiz->getDer());
         rslt += sstm.str();
 
         // Paso para formatear un poco el string
@@ -95,14 +109,14 @@ string ArbolABB::InOrden(Nodo* raiz) {
     return rslt;
 }
 
-string ArbolABB::PostOrden(Nodo* raiz) {
+string ArbolABB::PostOrdenRecursivo(Nodo* raiz) {
     string rslt = "";
     Helper helper;
     stringstream sstm;
 
     if (raiz != NULL) {
         // PREORDEN: IZQUIERDA -- DERECHA -- RAIZ (IDR)
-        sstm << PostOrden(raiz->getIzq()) << " " << PostOrden(raiz->getDer()) << " " << raiz->getDato();
+        sstm << PostOrdenRecursivo(raiz->getIzq()) << " " << PostOrdenRecursivo(raiz->getDer()) << " " << raiz->getDato();
         rslt += sstm.str();
 
         // Paso para formatear un poco el string

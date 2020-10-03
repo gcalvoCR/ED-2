@@ -8,6 +8,13 @@ using namespace std;
 
 class ArbolABB
 {
+private:
+    Nodo* raiz;
+    int altura;
+    string PreOrdenRecursivo(Nodo*);
+    string InOrdenRecursivo(Nodo*);
+    string PostOrdenRecursivo(Nodo*);
+
 public:
     //CONSTRUCTOR
     ArbolABB();
@@ -21,14 +28,11 @@ public:
     bool insertarDato(int);
     bool buscarPI(Nodo* nodo, int pDato);
     bool estaVacio();
-    string PreOrden(Nodo*);
-    string InOrden(Nodo*);
-    string PostOrden(Nodo*);
-   
 
-private:
-    Nodo* raiz;
-    int altura;
+    string preOrden();
+    string inOrden();
+    string postOrden();
+   
 };
 
 #endif
