@@ -3,6 +3,11 @@
 
 class Nodo
 {
+private:
+    int dato;
+    Nodo* der;
+    Nodo* izq;
+
 public:
     //CONSTRUCTORES
     Nodo();
@@ -21,9 +26,6 @@ public:
     Nodo* getIzq() const;
     void setIzq(Nodo*);
 
-    int dato;
-    Nodo* der;
-    Nodo* izq;
 };
 
 #endif
