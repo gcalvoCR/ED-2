@@ -30,6 +30,9 @@
     <ClCompile Include="Gestor.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="exmple.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Nodo.h">
@@ -42,6 +45,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Gestor.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="exmple.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

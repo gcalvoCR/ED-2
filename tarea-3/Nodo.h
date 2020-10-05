@@ -11,8 +11,9 @@ private:
 public:
     //CONSTRUCTORES
     Nodo();
-    Nodo(int, Nodo* der, Nodo* izq);
-    Nodo(int);
+    Nodo(int pdato, Nodo* ppadre, Nodo* der, Nodo* izq);
+    Nodo(int pdato, Nodo* ppadre);
+    Nodo(int ptado);
 
     //METODOS
     bool esHoja();
