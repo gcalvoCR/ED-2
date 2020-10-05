@@ -21,18 +21,22 @@ bool ArbolAVL::insertarDato(int pDato) {
 }
 //PI : punto de insercion del dato en el arbol binario (metodo recursivo)
 bool ArbolAVL::buscarPI(Nodo* nodo, int pDato) {
+    
+
     if (pDato < nodo->getDato() && nodo->getIzq() != nullptr) {
         return buscarPI(nodo->getIzq(), pDato);
     }
     else if (pDato < nodo->getDato() && nodo->getIzq() == nullptr) {
-        nodo->setIzq(new Nodo(pDato));
+        Nodo* padre = nodo;
+        nodo->setIzq(new Nodo(pDato, padre));
         equilibrar(nodo, IZQUIERDO, true); //Despues llamamos a la funcion equilibrar, el true es para e
     }
     else if (pDato > nodo->getDato() && nodo->getDer() != nullptr) {
         return buscarPI(nodo->getDer(), pDato);
     }
     else if (pDato > nodo->getDato() && nodo->getDer() == nullptr) {
-        nodo->setDer(new Nodo(pDato));
+        Nodo* padre = nodo;
+        nodo->setDer(new Nodo(pDato, padre));
         equilibrar(nodo, DERECHO, true); //Despues llamamos a la funcion equilibrar
     }
     else if (pDato == nodo->getDato()) {
@@ -41,6 +45,8 @@ bool ArbolAVL::buscarPI(Nodo* nodo, int pDato) {
     }
     return true;
 }
+
+
 
 bool ArbolAVL::estaVacio() {
     if (getRaiz() == nullptr) {
@@ -173,7 +179,7 @@ void ArbolAVL::equilibrar(Nodo* pnodo, int rama, bool nuevo)
         }
         else if (pnodo->getFactorEquilibrio() == 2) {  // Rotar a izquierda y salir:
             if (pnodo->getDer()->getFactorEquilibrio() == -1) rotacionDobleIzquierda(pnodo); // Rotación doble
-            else rotacionSimpleDerecha(pnodo);                        // Rotación simple
+            else rotacionSimpleIzquierda(pnodo);                        // Rotación simple
             salir = true;
         }
         if (pnodo->getPadre())

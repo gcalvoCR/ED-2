@@ -2,15 +2,19 @@
 #include "stddef.h"
 
 //CONSTRUCTORES
-Nodo::Nodo() : dato(0), der(NULL), izq(NULL), fe(0)
+Nodo::Nodo() : dato(0), padre(NULL), der(NULL), izq(NULL), fe(0)
 {
 }
 
-Nodo::Nodo(int dato, Nodo* der, Nodo* izq) : dato(dato), der(der), izq(izq), fe(0)
+Nodo::Nodo(int dato, Nodo * pPadre, Nodo* der, Nodo* izq) : dato(dato), padre(pPadre), der(der), izq(izq), fe(0)
 {
 }
 
-Nodo::Nodo(int dato) : dato(dato), der(NULL), izq(NULL), fe(0)
+Nodo::Nodo(int dato, Nodo* pPadre) : dato(dato), padre(pPadre), der(NULL), izq(NULL), fe(0)
+{
+}
+
+Nodo::Nodo(int dato) : dato(dato), padre(NULL), der(NULL), izq(NULL), fe(0)
 {
 }
 
