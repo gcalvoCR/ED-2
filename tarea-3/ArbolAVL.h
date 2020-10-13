@@ -8,15 +8,21 @@ using namespace std;
 class ArbolAVL
 {
 private:
+    //atributos
     enum {IZQUIERDO, DERECHO};
     Nodo* raiz;
-    Nodo* actual;
-    int altura;
+
+    //GETTERS & SETTERS
+    Nodo* getRaiz();
+    void setRaiz(Nodo*);
+
+    //Metodo recursivo para buscar e insertar
+    bool buscarEinsertarOrdenado(Nodo* nodo, int pDato);
+
+    //recorridos
     string PreOrdenRecursivo(Nodo*);
     string InOrdenRecursivo(Nodo*);
     string PostOrdenRecursivo(Nodo*);
-
-    int max(int a, int b);
 
     //Funciones para equilibrado
     void equilibrar(Nodo*, int, bool);
@@ -28,31 +34,23 @@ private:
 public:
     //CONSTRUCTOR
     ArbolAVL();
+    ~ArbolAVL();
 
     //METODOS
-    bool insertarDato(int);// Insertar en arbol
-    bool buscarPI(Nodo* nodo, int pDato);
-    bool estaVacio();
-    void borrar(int pdato);
-    bool buscar(int pdato);
-    bool esHoja(Nodo* pnodo);
-    int numeroNodos();
-    int alturaArbol();
+    bool insertarElem(int pdato);   // Insertar en arbol
+    bool eliminarElem(int pdato);   // elimina el dato
+    int peso();                     // numero de elementos
+    bool esHoja(Nodo* pnodo);       // verifica si elemento es hoja
+    int numHojas();                 // devuelve el numero de hojas
+    bool estaVacio();               // verifica si el arbol esta vacio
+    void borrar(int pdato);         // borra elemento
+    bool buscar(int pdato);         // busca elemento en el arbol 
+    int altura();                   // devuelve la altura del arbol
 
     //Mostrar datos en pre-in-post-orden
     string preOrden();
     string inOrden();
     string postOrden();
-
-    //GETTERS & SETTERS
-    Nodo* getRaiz();
-    void setRaiz(Nodo*);
-
-    Nodo* getActual();
-    void setActual(Nodo* actual);
-
-    int getAltura();
-    void setAltura(int altura);
 
 };
 

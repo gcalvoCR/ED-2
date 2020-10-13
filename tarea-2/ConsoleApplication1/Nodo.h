@@ -12,7 +12,7 @@ public:
     //CONSTRUCTORES
     Nodo();
     Nodo(int, Nodo* der, Nodo* izq);
-    Nodo(int);
+    Nodo(int pdato);
 
     //METODOS
     bool esHoja();
@@ -20,7 +20,7 @@ public:
 
     //GETTERS & SETTERS
     int getDato() const;
-    void setDato(int info);
+    void setDato(int pdato);
     Nodo* getDer() const;
     void setDer(Nodo*);
     Nodo* getIzq() const;

@@ -2,18 +2,18 @@
 class Nodo
 {
 private:
-    int dato;
-    Nodo* padre;
-    Nodo* der;
-    Nodo* izq;
-    int fe;  //factor de equilibrio
+    int dato;       // dato
+    Nodo* padre;    // nodo padre
+    Nodo* der;      // hijo derecho
+    Nodo* izq;      // hijo izquierdo
+    int fe;         // factor de equilibrio
 
 public:
     //CONSTRUCTORES
     Nodo();
     Nodo(int pdato, Nodo* ppadre, Nodo* der, Nodo* izq);
     Nodo(int pdato, Nodo* ppadre);
-    Nodo(int ptado);
+    Nodo(int pdato);
 
     //METODOS
     bool esHoja();
@@ -28,9 +28,10 @@ public:
     void setDer(Nodo*);
     Nodo* getIzq();
     void setIzq(Nodo*);
-    int getFactorEquilibrio();
-    void setFactorEquilibrio(int pfe);
+    int getFE();
+    void setFE(int pfe);
 
+    //METODOS MISCELANEOS
     void incrementarFE();
     void disminuirFE();
 

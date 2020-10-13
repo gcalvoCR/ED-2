@@ -9,30 +9,35 @@ using namespace std;
 class ArbolABB
 {
 private:
+    //Atributos
     Nodo* raiz;
     int altura;
+
+    //GETTERS & SETTERS
+    Nodo* getRaiz();
+    void setRaiz(Nodo*);
+    int getAltura();
+    void setAltura(int paltura);
+
+    bool buscarEinsertarOrdenado(Nodo* nodo, int pdato);
     string PreOrdenRecursivo(Nodo*);
     string InOrdenRecursivo(Nodo*);
     string PostOrdenRecursivo(Nodo*);
 
 public:
-    //CONSTRUCTOR
+    //CONSTRUCTORA
     ArbolABB();
 
-    //GETTERS & SETTERS
-    Nodo* getRaiz() const;
-    void setRaiz(Nodo*);
-
     //METODOS
-    // Insertar en árbol ordenado:
-    bool insertarDato(int);
-    bool buscarPI(Nodo* nodo, int pDato);
+    //Insertar en árbol ordenado
+    bool insertarElem(int pdato);
     bool estaVacio();
 
+    // Recorridos
     string preOrden();
     string inOrden();
     string postOrden();
-   
+
 };
 
 #endif
