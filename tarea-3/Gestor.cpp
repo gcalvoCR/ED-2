@@ -1,7 +1,7 @@
 #include "Gestor.h"
 
 string Gestor::insertarEnABB(int pDato) {
-	bool cond = arbol.insertarDato(pDato);
+	bool cond = arbol.insertarElem(pDato);
 	string msg;
 	if (cond) {
 		msg = "Numero entero agregado con exito.";

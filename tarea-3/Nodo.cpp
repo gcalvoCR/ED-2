@@ -6,11 +6,11 @@ Nodo::Nodo() : dato(0), padre(NULL), der(NULL), izq(NULL), fe(0)
 {
 }
 
-Nodo::Nodo(int dato, Nodo * pPadre, Nodo* der, Nodo* izq) : dato(dato), padre(pPadre), der(der), izq(izq), fe(0)
+Nodo::Nodo(int dato, Nodo * ppadre, Nodo* der, Nodo* izq) : dato(dato), padre(ppadre), der(der), izq(izq), fe(0)
 {
 }
 
-Nodo::Nodo(int dato, Nodo* pPadre) : dato(dato), padre(pPadre), der(NULL), izq(NULL), fe(0)
+Nodo::Nodo(int dato, Nodo* ppadre) : dato(dato), padre(ppadre), der(NULL), izq(NULL), fe(0)
 {
 }
 
@@ -38,12 +38,12 @@ void Nodo::setIzq(Nodo* izq) {
     Nodo::izq = izq;
 }
 
-int Nodo::getFactorEquilibrio()
+int Nodo::getFE()
 {
     return this->fe;
 }
 
-void Nodo::setFactorEquilibrio(int pfe)
+void Nodo::setFE(int pfe)
 {
     this->fe = pfe;
 }

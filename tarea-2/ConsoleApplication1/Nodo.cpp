@@ -8,10 +8,10 @@ Nodo::Nodo()
     setDer(NULL);
     setIzq(NULL);
 }
-Nodo::Nodo(int dato, Nodo* der, Nodo* izq) : dato(dato), der(der), izq(izq)
+Nodo::Nodo(int pdato, Nodo* der, Nodo* izq) : dato(pdato), der(der), izq(izq)
 {
 }
-Nodo::Nodo(int dato) : dato(dato), der(NULL), izq(NULL)
+Nodo::Nodo(int pdato) : dato(pdato), der(NULL), izq(NULL)
 {
 }
 
@@ -19,8 +19,8 @@ Nodo::Nodo(int dato) : dato(dato), der(NULL), izq(NULL)
 int Nodo::getDato() const {
     return dato;
 }
-void Nodo::setDato(int dato) {
-    Nodo::dato = dato;
+void Nodo::setDato(int pdato) {
+    Nodo::dato = pdato;
 }
 Nodo* Nodo::getDer() const {
     return der;

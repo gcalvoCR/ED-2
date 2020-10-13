@@ -8,36 +8,50 @@ ArbolABB::ArbolABB()
 }
 
 //GETTERS & SETTERS
-Nodo* ArbolABB::getRaiz() const {
+Nodo* ArbolABB::getRaiz() {
     return raiz;
+}
+Nodo* ArbolABB::getRaiz()
+{
+    return this->raiz;
 }
 void ArbolABB::setRaiz(Nodo* raiz) {
     ArbolABB::raiz = raiz;
 }
 
-//METODOS
+int ArbolABB::getAltura()
+{
+    return this->altura;
+}
 
-bool ArbolABB::insertarDato(int pDato) {
+void ArbolABB::setAltura(int paltura)
+{
+    this->altura = paltura;
+}
+
+//METODOS
+bool ArbolABB::insertarElem(int pdato) {
     if (this->raiz == nullptr) {
-        Nodo* nuevo = new Nodo(pDato);
+        Nodo* nuevo = new Nodo(pdato);
         this->raiz = nuevo;
     }
     else {
         //Invoca metodo recursivo que posicionara el dato en la rama indicada.
-        return buscarPI(this->raiz, pDato);
+        return buscarEinsertarOrdenado(this->raiz, pdato);
     }
     return true;
 }
+
 //PI : punto de insercion del dato en el arbol binario (metodo recursivo)
-bool ArbolABB::buscarPI(Nodo* nodo, int pDato) {
+bool ArbolABB::buscarEinsertarOrdenado(Nodo* nodo, int pDato) {
     if (pDato < nodo->getDato() && nodo->getIzq() != nullptr) {
-        return buscarPI(nodo->getIzq(), pDato);
+        return buscarEinsertarOrdenado(nodo->getIzq(), pDato);
     }
     else if (pDato < nodo->getDato() && nodo->getIzq() == nullptr) {
         nodo->setIzq(new Nodo(pDato));
     }
     else if (pDato > nodo->getDato() && nodo->getDer() != nullptr) {
-        return buscarPI(nodo->getDer(), pDato);
+        return buscarEinsertarOrdenado(nodo->getDer(), pDato);
     }
     else if (pDato > nodo->getDato() && nodo->getDer() == nullptr) {
         nodo->setDer(new Nodo(pDato));
