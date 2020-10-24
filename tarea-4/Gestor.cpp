@@ -20,3 +20,30 @@ string Gestor::mostrarInOrdenAVL() {
 string Gestor::mostrarPostOrdenAVL() {
 	return arbolAVL.postOrden();
 }
+
+
+
+//4. Metods en Arbol RN
+string Gestor::insertarEnRN(int pDato) {
+	arbolRN.insert(pDato);
+	string msg;
+	return "Numero entero agregado con exito.";
+	
+}
+void Gestor::eliminarEnRN(int pdato)
+{
+	arbolRN.deleteNodo(pdato);
+}
+void Gestor::imprimirRN()
+{
+	arbolRN.prettyPrint();
+}
+void Gestor::mostrarPreOrdenRN() {
+	arbolRN.preOrden();
+}
+void Gestor::mostrarInOrdenRN() {
+	arbolRN.inOrden();
+}
+void Gestor::mostrarPostOrdenRN() {
+	arbolRN.postOrden();
+}
