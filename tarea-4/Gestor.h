@@ -3,6 +3,7 @@
 #include "ArbolAVL.h"
 #include "ArbolB.h"
 #include "ArbolBPlus.h"
+#include "ArbolRN.h"
 
 using namespace std;
 
@@ -12,6 +13,7 @@ private:
 	ArbolAVL arbolAVL;
 	ArbolB arbolB;
 	ArbolBPlus arbolBPlus;
+	ArbolRN arbolRN;
 
 public:
 	//1. Métodos para Árbol AVL
@@ -22,5 +24,11 @@ public:
 	//2. Métodos para Árbol B
 	//3. Métodos para Árbol B+
 	//4. Métodos para Árbol Rojo-Negro
+	string insertarEnRN(int);
+	void eliminarEnRN(int);
+	void imprimirRN();
+	void mostrarPreOrdenRN();
+	void mostrarInOrdenRN();
+	void mostrarPostOrdenRN();
 };
 

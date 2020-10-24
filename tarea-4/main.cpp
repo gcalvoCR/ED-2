@@ -18,14 +18,19 @@ void menuArbolRojoNegro();
 int menuArbolRojoNegroImp(int answer);
 //PROTOTIPO DE METODOS 
 void insertarEnAVL();
-void mostrarPreOrden();
-void mostrarInOrden();
-void mostrarPostOrden();
+void mostrarPreOrdenAVL();
+void mostrarInOrdenAVL();
+void mostrarPostOrdenAVL();
 void insertarEnArbolB();
 void imprimirListaArbolB();
 void imprimirPruebaArbolB();
 void eliminarEnArbolB();
 void insertarEnArbolRojoNegro();
+void imprimirListaArbolRojoNegro();
+void eliminarEnArbolRojoNegro();
+void mostrarPreOrdenArbolRojoNegro();
+void mostrarInRodenArbolRojoNegro();
+void mostrarPostOrdenArbolRojoNegro();
 //GESTOR
 static Gestor* gestor = new Gestor();
 
@@ -134,15 +139,15 @@ int menuArbolAVLImp(int answer)
         insertarEnAVL();
         break;
     case 2:
-        mostrarPreOrden();
+        mostrarPreOrdenAVL();
         system("PAUSE");
         break;
     case 3:
-        mostrarInOrden();
+        mostrarInOrdenAVL();
         system("PAUSE");
         break;
     case 4:
-        mostrarPostOrden();
+        mostrarPostOrdenAVL();
         system("PAUSE");
         break;
     case 5:
@@ -296,16 +301,21 @@ void menuArbolRojoNegro()
     do
     {
         cout << "-------------------------------------" << endl;
-        cout << "ÁRBOL ROJO-NEGRO" << endl;
+        cout << "ARBOL ROJO-NEGRO" << endl;
         cout << "-------------------------------------" << endl;
         cout << "Favor digite una opcion:" << endl;
-        cout << "1. Agregar elemento a Árbol Rojo-Negro." << endl;
-        cout << "5. Volver al menu principal." << endl;
+        cout << "1. Agregar elemento a Arbol Rojo-Negro." << endl;
+        cout << "2. Eliminar elemento del Arbol Rojo-Negro." << endl;
+        cout << "3. Imprimir Arbol Rojo-Negro." << endl;
+        cout << "4. Mostrar datos en preorden." << endl;
+        cout << "5. Mostrar datos en inorden." << endl;
+        cout << "6. Mostrar datos en postorden." << endl;
+        cout << "7. Volver al menu principal." << endl;
         cout << "0. Salir." << endl;
         cout << "-------------------------------------" << endl;
         cin >> answer;
 
-        menuArbolAVLImp(answer);
+        menuArbolRojoNegroImp(answer);
 
         if (answer == 0)
         {
@@ -316,6 +326,8 @@ void menuArbolRojoNegro()
             keepLooping = true;
         }
     } while (keepLooping);
+
+
 }
 
 int menuArbolRojoNegroImp(int answer)
@@ -325,7 +337,27 @@ int menuArbolRojoNegroImp(int answer)
     case 1:
         insertarEnArbolRojoNegro();
         break;
+    case 2:
+        eliminarEnArbolRojoNegro();
+        system("PAUSE");
+        break;
+    case 3:
+        imprimirListaArbolRojoNegro();
+        system("PAUSE");
+        break;
+    case 4:
+        mostrarPreOrdenArbolRojoNegro();
+        system("PAUSE");
+        break;
     case 5:
+        mostrarInRodenArbolRojoNegro();
+        system("PAUSE");
+        break;
+    case 6:
+        mostrarPostOrdenArbolRojoNegro();
+        system("PAUSE");
+        break;
+    case 7:
         main();
         break;
     case 0:
@@ -364,15 +396,15 @@ void insertarEnAVL() {
     cout << gestor->insertarEnAVL(input) << endl;
 }
 
-void mostrarPreOrden() {
+void mostrarPreOrdenAVL() {
     cout << gestor->mostrarPreOrdenAVL() << endl;
 }
 
-void mostrarInOrden() {
+void mostrarInOrdenAVL() {
     cout << gestor->mostrarInOrdenAVL() << endl;
 }
 
-void mostrarPostOrden() {
+void mostrarPostOrdenAVL() {
     cout << gestor->mostrarPostOrdenAVL() << endl;
 }
 
@@ -396,8 +428,70 @@ void eliminarEnArbolB() {
 //3. Métodos para menú de árbol B+
 
 
-//4. Metodos para menu de bicola
+//4. Metodos para menu de Arbol Rojo y Negro
 
 void insertarEnArbolRojoNegro() {
+    int input = -1;
+    bool valid = false;
+    do
+    {
+        cout << "Favor digite un numero entero a agregar: " << flush;
+        cin >> input;
+        if (cin.good())
+        {
+            valid = true;
+        }
+        else
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Error. Favor inserte un numero entero." << endl;
+        }
+    } while (!valid);
 
+    cout << gestor->insertarEnRN(input) << endl;
+}
+
+void imprimirListaArbolRojoNegro()
+{
+    gestor->imprimirRN();
+
+}
+
+void eliminarEnArbolRojoNegro()
+{
+    int input = -1;
+    bool valid = false;
+    do
+    {
+        cout << "Favor digite un numero entero a eliminar: " << flush;
+        cin >> input;
+        if (cin.good())
+        {
+            valid = true;
+        }
+        else
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Error. Favor inserte un numero entero." << endl;
+        }
+    } while (!valid);
+
+    gestor->eliminarEnRN(input);
+}
+
+void mostrarPreOrdenArbolRojoNegro()
+{
+    gestor->mostrarPreOrdenRN();
+}
+
+void mostrarInRodenArbolRojoNegro()
+{
+    gestor->mostrarInOrdenRN();
+}
+
+void mostrarPostOrdenArbolRojoNegro()
+{
+    gestor->mostrarPostOrdenRN();
 }
