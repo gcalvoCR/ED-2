@@ -10,20 +10,42 @@ private:
 	NodoRN* raiz;
 	NodoRN* TNULL;
 
-	// initializes the nodos with appropirate values
-	// all the pointers are set to point to the null pointer
-	void initializeNULLnodo(NodoRN* nodo, NodoRN* padre);
-	void preOrderHelper(NodoRN* nodo);
-	void inOrderHelper(NodoRN* nodo);
-	void postOrderHelper(NodoRN* nodo);
-	NodoRN* searchTreeHelper(NodoRN* nodo, int key);
-	// fix the rb tree modified by the delete operation
-	void fixDelete(NodoRN* x);
-	void rbTransplant(NodoRN* u, NodoRN* v);
-	void deletenodoHelper(NodoRN* nodo, int key);
-	// fix the red-black tree
-	void fixInsert(NodoRN* k);
+	// Inicializa todos los nodos con los valores apropiados
+	// todos los punteros apunta al puntero "NULL" TNULL
+	void inicializaNodoNULL(NodoRN* nodo, NodoRN* padre);
+	
+	//Helpers
+	void preOrdenHelper(NodoRN* nodo);
+	void inOrdenHelper(NodoRN* nodo);
+	void postOrdenHelper(NodoRN* nodo);
+	NodoRN* buscarArbolHelper(NodoRN* nodo, int key);
+	bool borrarNodoHelper(NodoRN* nodo, int key);
 	void printHelper(NodoRN* raiz, string indent, bool last);
+
+	// Arregla el Arbol modificado por la operacion de borrar
+	void arreglarBorrado(NodoRN* x);
+	void transplantarRN(NodoRN* u, NodoRN* v);
+	
+	// arregla la insercion
+	void arreglarInsercion(NodoRN* k);
+
+	// busca el arbol por llave k
+	NodoRN* buscarArbol(int k);
+	// encuentra el nodo con la llave minima
+	NodoRN* minimo(NodoRN* nodo);
+	// encuentra el nodo con la llave maxima
+	NodoRN* maximo(NodoRN* nodo);
+	// encuentra el sucesor del nodo dado
+	NodoRN* sucesor(NodoRN* x);
+	// encuentra el predecesor del nodo dado
+	NodoRN* predecesor(NodoRN* x);
+	// rotar nodo izquierdo de x
+	void rotarIzq(NodoRN* x);
+	// rotar nodo derecho de x
+	void rotarDer(NodoRN* x);
+	// Getter que se necesita
+	NodoRN* getraiz();
+	
 
 public:
 	ArbolRN();
@@ -33,27 +55,11 @@ public:
 	void inOrden();
 	// IDR
 	void postOrden();
-	// busca el arbol por llave k
-	NodoRN* buscarArbol(int k);
-	// encuentra el nodo con la llave minima
-	NodoRN* minimum(NodoRN* nodo);
-	// encuentra el nodo con la llave maxima
-	NodoRN* maximum(NodoRN* nodo);
-	// encuentra el sucesor del nodo dado
-	NodoRN* successor(NodoRN* x);
-	// find the predecessor of a given nodo
-	NodoRN* predecessor(NodoRN* x);
-	// rotate izq at nodo x
-	void izqRotate(NodoRN* x);
-	// rotate der at nodo x
-	void derRotate(NodoRN* x);
-	// insert the key to the tree in its appropriate position
-	// and fix the tree
-	void insert(int key);
-	NodoRN* getraiz();
-	// delete the nodo from the tree
-	void deleteNodo(int dato);
-	// print the tree structure on the screen
+	// insertar dato y arrreglar el arbol
+	bool insertar(int key);
+	// borrar el nodo
+	bool borrarNodo(int dato);
+	// imprimir 
 	void prettyPrint();
 
 };

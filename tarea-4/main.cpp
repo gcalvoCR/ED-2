@@ -570,7 +570,7 @@ void eliminarEnArbolRojoNegro()
         }
     } while (!valid);
 
-    gestor->eliminarEnRN(input);
+    cout << gestor->eliminarEnRN(input) << endl;
 }
 
 void mostrarPreOrdenArbolRojoNegro()
