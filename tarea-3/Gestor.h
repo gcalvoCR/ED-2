@@ -13,5 +13,7 @@ public:
 	string mostrarPreOrden();
 	string mostrarInOrden();
 	string mostrarPostOrden();
+	string buscarEnAVL(int);
+	string eliminarAVL(int);
 };
 

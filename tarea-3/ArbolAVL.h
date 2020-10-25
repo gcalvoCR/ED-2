@@ -33,16 +33,20 @@ public:
     bool insertarDato(int);// Insertar en arbol
     bool buscarPI(Nodo* nodo, int pDato);
     bool estaVacio();
-    void borrar(int pdato);
-    bool buscar(int pdato);
+    bool estaVacio(Nodo* r) { return r == NULL; }
+    bool borrar(int pdato);
+    bool buscar(Nodo* nodo,int pdato);
+    bool buscarEnAVL(int pDato);
     bool esHoja(Nodo* pnodo);
     int numeroNodos();
     int alturaArbol();
 
-    //Mostrar datos en pre-in-post-orden
+    //Mostrar datos en pre-in-post-orden,buscarAVL Y EliminarAVL
     string preOrden();
     string inOrden();
     string postOrden();
+
+
 
     //GETTERS & SETTERS
     Nodo* getRaiz();

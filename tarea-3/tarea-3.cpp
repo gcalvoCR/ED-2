@@ -24,6 +24,8 @@ void insertarEnAVL();
 void mostrarPreOrden();
 void mostrarInOrden();
 void mostrarPostOrden();
+void buscarEnAVL();
+void borrarAVL();
 
 //VARIABLES ESTATICAS
 static Gestor* gestor = new Gestor();
@@ -43,6 +45,8 @@ int main()
         cout << "3. Mostrar datos en preorden." << endl;
         cout << "4. Mostrar datos en inorden." << endl;
         cout << "5. Mostrar datos en postorden." << endl; 
+        cout << "6. Buscar en AVL" << endl;
+        cout << "7. Borrar en AVL" << endl;
         cout << "0. Salir." << endl;
         cout << "-------------------------------------" << endl;
         cin >> answer;
@@ -83,6 +87,14 @@ int menu(int answer)
         mostrarPostOrden();
         system("PAUSE");
         break;
+    case 6:
+        buscarEnAVL();
+        system("PAUSE");
+        break;
+    case 7:
+        borrarAVL();
+        system("PAUSE");
+        break;
     case 0:
         cout << "Gracias por usar el sistema." << endl;
         break;
@@ -110,7 +122,11 @@ void insertarValoresDefault() {
     gestor->insertarEnABB(100);
     gestor->insertarEnABB(1);
 
+    
+
     cout << "Valores insertados correctamente!" << endl;
+
+    gestor->eliminarAVL(15);
 }
 
 void insertarEnAVL() {
@@ -145,4 +161,48 @@ void mostrarInOrden() {
 
 void mostrarPostOrden() {
     cout << gestor->mostrarPostOrden() << endl;
+}
+
+void buscarEnAVL() {
+
+    int input = -1;
+    bool valid = false;
+    do
+    {
+        cout << "Favor digite un numero enteroa buscar: " << flush;
+        cin >> input;
+        if (cin.good())
+        {
+            valid = true;
+        }
+        else
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Error. Favor inserte un numero entero." << endl;
+        }
+    } while (!valid);
+    cout << gestor->buscarEnAVL(input) << endl;
+}
+
+void borrarAVL() {
+    int input = -1;
+    bool valid = false;
+    do
+    {
+        cout << "Favor digite un numero entero a borrar: " << flush;
+        cin >> input;
+        if (cin.good())
+        {
+            valid = true;
+        }
+        else
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Error. Favor inserte un numero entero." << endl;
+        }
+    } while (!valid);
+
+    cout << gestor->eliminarAVL(input) << endl;
 }
