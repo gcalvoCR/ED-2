@@ -7,8 +7,8 @@
 //Constructor del arbol de orden O
 ArbolBPlus::ArbolBPlus()
 {
-    orden = 3;
-    inicializar();
+    orden = 0;
+    //inicializar();
 }
 
 ArbolBPlus::ArbolBPlus(int o)
@@ -34,6 +34,7 @@ int ArbolBPlus::getOrden()
 void ArbolBPlus::setOrden(int orden)
 {
     this->orden = orden;
+    inicializar();
 }
 
 bool ArbolBPlus::agregar(int k)

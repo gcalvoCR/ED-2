@@ -26,10 +26,10 @@ string Gestor::insertarElementoEnArbolB(int pDato) {
 	bool cond = arbolB.agregar(pDato);
 	string msg;
 	if (cond) {
-		msg = "Numero entero agregado con exito.";
+		msg = "Numero entero agregado con exito.\n";
 	}
 	else {
-		msg = "Numero entero se encuentra repetido. Intente de nuevo.";
+		msg = "Numero entero se encuentra repetido. Intente de nuevo.\n";
 	}
 	return msg;
 }
@@ -81,7 +81,7 @@ string Gestor::insertarElementoEnArbolBPlus(int pDato) {
 		msg += "Numero entero agregado con exito.\n";
 	}
 	else {
-		msg = "Numero entero se encuentra repetido. Intente de nuevo.";
+		msg = "Numero entero se encuentra repetido. Intente de nuevo.\n";
 	}
 	return msg;
 }

@@ -246,7 +246,7 @@ void menuArbolBPlus()
     do
     {
         cout << "-------------------------------------" << endl;
-        cout << "ARBOL B + de orden 3" << endl;
+        cout << "ARBOL B +" << endl;
         cout << "-------------------------------------" << endl;
         cout << "Favor digite una opcion:" << endl;
         cout << "1. Agregar elemento al arbol B+." << endl;
@@ -561,7 +561,12 @@ void ingresarOrdenArbolBPlus() {
 }
 
 void imprimirListaArbolBPlus() {
-    gestor->imprimirDatosArbolBPlus();
+    if (gestor->validarOrdenArbolBPlus()) {
+      gestor->imprimirDatosArbolBPlus();
+    }
+    else {
+        ingresarOrdenArbolBPlus();
+    }
 }
 
 //4. Metodos para menu de Arbol Rojo y Negro
