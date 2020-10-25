@@ -23,16 +23,31 @@ string Gestor::mostrarPostOrdenAVL() {
 
 
 
-//4. Metods en Arbol RN
+//4. Metodos en Arbol RN
 string Gestor::insertarEnRN(int pDato) {
-	arbolRN.insert(pDato);
+	bool cond = arbolRN.insertar(pDato);
 	string msg;
-	return "Numero entero agregado con exito.";
-	
+	if (cond) {
+		msg = "Numero entero agregado con exito.";
+	}
+	else {
+		msg = "Numero entero se encuentra repetido. Intente de nuevo.";
+	}
+	return msg;
 }
-void Gestor::eliminarEnRN(int pdato)
+
+string Gestor::eliminarEnRN(int pdato)
 {
-	arbolRN.deleteNodo(pdato);
+	bool cond = arbolRN.borrarNodo(pdato);
+	string msg;
+	if (cond) {
+		msg = "Numero entero eliminado con exito.";
+	}
+	else {
+		msg = "Numero entero no fue encontrado. Intente de nuevo.";
+	}
+	return msg;
+	
 }
 void Gestor::imprimirRN()
 {

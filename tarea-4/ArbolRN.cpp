@@ -1,7 +1,7 @@
 #include "ArbolRN.h"
 #include "ArbolRN.h"
 
-void ArbolRN::initializeNULLnodo(NodoRN* nodo, NodoRN* padre)
+void ArbolRN::inicializaNodoNULL(NodoRN* nodo, NodoRN* padre)
 {
 	nodo->dato = 0;
 	nodo->padre = padre;
@@ -10,110 +10,110 @@ void ArbolRN::initializeNULLnodo(NodoRN* nodo, NodoRN* padre)
 	nodo->color = 0;
 }
 
-void ArbolRN::preOrderHelper(NodoRN* nodo)
+void ArbolRN::preOrdenHelper(NodoRN* nodo)
 {
 	if (nodo != TNULL) {
 		cout << nodo->dato << " ";
-		preOrderHelper(nodo->izq);
-		preOrderHelper(nodo->der);
+		preOrdenHelper(nodo->izq);
+		preOrdenHelper(nodo->der);
 	}
 }
 
-void ArbolRN::inOrderHelper(NodoRN* nodo)
+void ArbolRN::inOrdenHelper(NodoRN* nodo)
 {
 	if (nodo != TNULL) {
-		inOrderHelper(nodo->izq);
+		inOrdenHelper(nodo->izq);
 		cout << nodo->dato << " ";
-		inOrderHelper(nodo->der);
+		inOrdenHelper(nodo->der);
 	}
 }
 
-void ArbolRN::postOrderHelper(NodoRN* nodo)
+void ArbolRN::postOrdenHelper(NodoRN* nodo)
 {
 	if (nodo != TNULL) {
-		postOrderHelper(nodo->izq);
-		postOrderHelper(nodo->der);
+		postOrdenHelper(nodo->izq);
+		postOrdenHelper(nodo->der);
 		cout << nodo->dato << " ";
 	}
 }
 
-NodoRN* ArbolRN::searchTreeHelper(NodoRN* nodo, int key)
+NodoRN* ArbolRN::buscarArbolHelper(NodoRN* nodo, int key)
 {
 	if (nodo == TNULL || key == nodo->dato) {
 		return nodo;
 	}
 
 	if (key < nodo->dato) {
-		return searchTreeHelper(nodo->izq, key);
+		return buscarArbolHelper(nodo->izq, key);
 	}
-	return searchTreeHelper(nodo->der, key);
+	return buscarArbolHelper(nodo->der, key);
 }
 
-void ArbolRN::fixDelete(NodoRN* x)
+void ArbolRN::arreglarBorrado(NodoRN* x)
 {
 	NodoRN* s;
 	while (x != raiz && x->color == 0) {
 		if (x == x->padre->izq) {
 			s = x->padre->der;
 			if (s->color == 1) {
-				// case 3.1
+				// caso 3.1
 				s->color = 0;
 				x->padre->color = 1;
-				izqRotate(x->padre);
+				rotarIzq(x->padre);
 				s = x->padre->der;
 			}
 
 			if (s->izq->color == 0 && s->der->color == 0) {
-				// case 3.2
+				// caso 3.2
 				s->color = 1;
 				x = x->padre;
 			}
 			else {
 				if (s->der->color == 0) {
-					// case 3.3
+					// caso 3.3
 					s->izq->color = 0;
 					s->color = 1;
-					derRotate(s);
+					rotarDer(s);
 					s = x->padre->der;
 				}
 
-				// case 3.4
+				// caso 3.4
 				s->color = x->padre->color;
 				x->padre->color = 0;
 				s->der->color = 0;
-				izqRotate(x->padre);
+				rotarIzq(x->padre);
 				x = raiz;
 			}
 		}
 		else {
 			s = x->padre->izq;
 			if (s->color == 1) {
-				// case 3.1
+				// caso 3.1
 				s->color = 0;
 				x->padre->color = 1;
-				derRotate(x->padre);
+				rotarDer(x->padre);
 				s = x->padre->izq;
 			}
 
 			if (s->der->color == 0 && s->der->color == 0) {
-				// case 3.2
+				// caso 3.2
 				s->color = 1;
 				x = x->padre;
 			}
 			else {
 				if (s->izq->color == 0) {
-					// case 3.3
+					// caso 3.3
 					s->der->color = 0;
 					s->color = 1;
-					izqRotate(s);
+					rotarIzq(s);
 					s = x->padre->izq;
 				}
 
-				// case 3.4
+				// caso 3.4
 				s->color = x->padre->color;
 				x->padre->color = 0;
 				s->izq->color = 0;
-				derRotate(x->padre);
+				rotarDer(x->padre);
 				x = raiz;
 			}
 		}
@@ -121,7 +121,7 @@ void ArbolRN::fixDelete(NodoRN* x)
 	x->color = 0;
 }
 
-void ArbolRN::rbTransplant(NodoRN* u, NodoRN* v)
+void ArbolRN::transplantarRN(NodoRN* u, NodoRN* v)
 {
 	if (u->padre == nullptr) {
 		raiz = v;
@@ -135,9 +135,9 @@ void ArbolRN::rbTransplant(NodoRN* u, NodoRN* v)
 	v->padre = u->padre;
 }
 
-void ArbolRN::deletenodoHelper(NodoRN* nodo, int key)
+bool ArbolRN::borrarNodoHelper(NodoRN* nodo, int key)
 {
-	// find the nodo containing key
+	// encuentra el nodo que contenga la llave --> key
 	NodoRN* z = TNULL;
 	NodoRN* x;
 	NodoRN* y;
@@ -156,7 +156,7 @@ void ArbolRN::deletenodoHelper(NodoRN* nodo, int key)
 
 	if (z == TNULL) {
 		cout << "Couldn't find key in the tree" << endl;
-		return;
+		return false;
 	}
 
 	y = z;
@@ -164,44 +164,46 @@ void ArbolRN::deletenodoHelper(NodoRN* nodo, int key)
 	int y_original_color = y->color;
 	if (z->izq == TNULL) {
 		x = z->der;
-		rbTransplant(z, z->der);
+		transplantarRN(z, z->der);
 	}
 	else if (z->der == TNULL) {
 		x = z->izq;
-		rbTransplant(z, z->izq);
+		transplantarRN(z, z->izq);
 	}
 	else {
-		y = minimum(z->der);
+		y = minimo(z->der);
 		y_original_color = y->color;
 		x = y->der;
 		if (y->padre == z) {
 			x->padre = y;
 		}
 		else {
-			rbTransplant(y, y->der);
+			transplantarRN(y, y->der);
 			y->der = z->der;
 			y->der->padre = y;
 		}
 
-		rbTransplant(z, y);
+		transplantarRN(z, y);
 		y->izq = z->izq;
 		y->izq->padre = y;
 		y->color = z->color;
 	}
 	delete z;
 	if (y_original_color == 0) {
-		fixDelete(x);
+		arreglarBorrado(x);
 	}
+
+	return true;
 }
 
-void ArbolRN::fixInsert(NodoRN* k)
+void ArbolRN::arreglarInsercion(NodoRN* k)
 {
 	NodoRN* u;
 	while (k->padre->color == 1) {
 		if (k->padre == k->padre->padre->der) {
-			u = k->padre->padre->izq; // uncle
+			u = k->padre->padre->izq; // tio
 			if (u->color == 1) {
-				// case 3.1
+				// caso 3.1
 				u->color = 0;
 				k->padre->color = 0;
 				k->padre->padre->color = 1;
@@ -209,21 +211,21 @@ void ArbolRN::fixInsert(NodoRN* k)
 			}
 			else {
 				if (k == k->padre->izq) {
-					// case 3.2.2
+					// caso 3.2.2
 					k = k->padre;
-					derRotate(k);
+					rotarDer(k);
 				}
-				// case 3.2.1
+				// caso 3.2.1
 				k->padre->color = 0;
 				k->padre->padre->color = 1;
-				izqRotate(k->padre->padre);
+				rotarIzq(k->padre->padre);
 			}
 		}
 		else {
-			u = k->padre->padre->der; // uncle
+			u = k->padre->padre->der; // tio
 
 			if (u->color == 1) {
-				// mirror case 3.1
+				// espejo de caso 3.1
 				u->color = 0;
 				k->padre->color = 0;
 				k->padre->padre->color = 1;
@@ -231,14 +233,14 @@ void ArbolRN::fixInsert(NodoRN* k)
 			}
 			else {
 				if (k == k->padre->der) {
-					// mirror case 3.2.2
+					// espejo de caso 3.2.2
 					k = k->padre;
-					izqRotate(k);
+					rotarIzq(k);
 				}
-				// mirror case 3.2.1
+				// espejo de caso 3.2.1
 				k->padre->color = 0;
 				k->padre->padre->color = 1;
-				derRotate(k->padre->padre);
+				rotarDer(k->padre->padre);
 			}
 		}
 		if (k == raiz) {
@@ -250,7 +252,7 @@ void ArbolRN::fixInsert(NodoRN* k)
 
 void ArbolRN::printHelper(NodoRN* raiz, string indent, bool last)
 {
-	// print the tree structure on the screen
+	// imprimir la estructura del arbol en pantalla
 	if (raiz != TNULL) {
 		cout << indent;
 		if (last) {
@@ -281,25 +283,25 @@ ArbolRN::ArbolRN()
 
 void ArbolRN::preOrden()
 {
-	preOrderHelper(this->raiz);
+	preOrdenHelper(this->raiz);
 }
 
 void ArbolRN::inOrden()
 {
-	inOrderHelper(this->raiz);
+	inOrdenHelper(this->raiz);
 }
 
 void ArbolRN::postOrden()
 {
-	postOrderHelper(this->raiz);
+	postOrdenHelper(this->raiz);
 }
 
 NodoRN* ArbolRN::buscarArbol(int k)
 {
-	return searchTreeHelper(this->raiz, k);
+	return buscarArbolHelper(this->raiz, k);
 }
 
-NodoRN* ArbolRN::minimum(NodoRN* nodo)
+NodoRN* ArbolRN::minimo(NodoRN* nodo)
 {
 	while (nodo->izq != TNULL) {
 		nodo = nodo->izq;
@@ -307,7 +309,7 @@ NodoRN* ArbolRN::minimum(NodoRN* nodo)
 	return nodo;
 }
 
-NodoRN* ArbolRN::maximum(NodoRN* nodo)
+NodoRN* ArbolRN::maximo(NodoRN* nodo)
 {
 	while (nodo->der != TNULL) {
 		nodo = nodo->der;
@@ -315,17 +317,15 @@ NodoRN* ArbolRN::maximum(NodoRN* nodo)
 	return nodo;
 }
 
-NodoRN* ArbolRN::successor(NodoRN* x)
+NodoRN* ArbolRN::sucesor(NodoRN* x)
 {
-	// if the der subtree is not null,
-	// the successor is the izqmost nodo in the
-	// der subtree
+	// Si el subarbol derecho no es null
+	// el sucesor es el nodo mas a la izquierda en el subarbol derecho
 	if (x->der != TNULL) {
-		return minimum(x->der);
+		return minimo(x->der);
 	}
 
-	// else it is the lowest ancestor of x whose
-	// izq child is also an ancestor of x.
+	// caso contrario es el ancestro menor de x, el cual su hijo izquierdo es tambien el ancestro de x
 	NodoRN* y = x->padre;
 	while (y != TNULL && x == y->der) {
 		x = y;
@@ -334,13 +334,12 @@ NodoRN* ArbolRN::successor(NodoRN* x)
 	return y;
 }
 
-NodoRN* ArbolRN::predecessor(NodoRN* x)
+NodoRN* ArbolRN::predecesor(NodoRN* x)
 {
-	// if the izq subtree is not null,
-	// the predecessor is the dermost nodo in the 
-	// izq subtree
+	// Si el subarbol izquierdo no es null
+	// el predecesor es el nodo mas a la derecha in el subarbol izquierdo
 	if (x->izq != TNULL) {
-		return maximum(x->izq);
+		return maximo(x->izq);
 	}
 
 	NodoRN* y = x->padre;
@@ -352,7 +351,7 @@ NodoRN* ArbolRN::predecessor(NodoRN* x)
 	return y;
 }
 
-void ArbolRN::izqRotate(NodoRN* x)
+void ArbolRN::rotarIzq(NodoRN* x)
 {
 	NodoRN* y = x->der;
 	x->der = y->izq;
@@ -373,7 +372,7 @@ void ArbolRN::izqRotate(NodoRN* x)
 	x->padre = y;
 }
 
-void ArbolRN::derRotate(NodoRN* x)
+void ArbolRN::rotarDer(NodoRN* x)
 {
 	NodoRN* y = x->izq;
 	x->izq = y->der;
@@ -394,30 +393,35 @@ void ArbolRN::derRotate(NodoRN* x)
 	x->padre = y;
 }
 
-void ArbolRN::insert(int key)
+bool ArbolRN::insertar(int key)
 {
-	// Ordinary Binary Search Insertion
+	// Insercion binaria ordinaria
 	NodoRN* nodo = new NodoRN();
 	nodo->padre = nullptr;
 	nodo->dato = key;
 	nodo->izq = TNULL;
 	nodo->der = TNULL;
-	nodo->color = 1; // new nodo must be red
+	nodo->color = 1; // todo nodo insertado tiene que ser rojo
 
 	NodoRN* y = nullptr;
 	NodoRN* x = this->raiz;
 
 	while (x != TNULL) {
 		y = x;
-		if (nodo->dato < x->dato) {
-			x = x->izq;
+		if (nodo->dato == x->dato) {
+			return false;
 		}
 		else {
-			x = x->der;
+			if (nodo->dato < x->dato) {
+				x = x->izq;
+			}
+			else {
+				x = x->der;
+			}
 		}
 	}
 
-	// y is padre of x
+	// y es padre de x
 	nodo->padre = y;
 	if (y == nullptr) {
 		raiz = nodo;
@@ -429,19 +433,20 @@ void ArbolRN::insert(int key)
 		y->der = nodo;
 	}
 
-	// if new nodo is a raiz nodo, simply return
+	// si el nuevo nodo es la raiz, simplemente retorna
 	if (nodo->padre == nullptr) {
 		nodo->color = 0;
-		return;
+		return true;
 	}
 
-	// if the grandpadre is null, simply return
+	// si el abuelo es null, simplemente retorna
 	if (nodo->padre->padre == nullptr) {
-		return;
+		return true;
 	}
 
-	// Fix the tree
-	fixInsert(nodo);
+	// Se llama a arreglar insercion
+	arreglarInsercion(nodo);
+	return true;
 }
 
 NodoRN* ArbolRN::getraiz()
@@ -449,9 +454,9 @@ NodoRN* ArbolRN::getraiz()
 	return this->raiz;
 }
 
-void ArbolRN::deleteNodo(int dato)
+bool ArbolRN::borrarNodo(int dato)
 {
-	deletenodoHelper(this->raiz, dato);
+	return borrarNodoHelper(this->raiz, dato);
 }
 
 void ArbolRN::prettyPrint()

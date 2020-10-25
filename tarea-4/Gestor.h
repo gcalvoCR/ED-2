@@ -25,7 +25,7 @@ public:
 	//3. Métodos para Árbol B+
 	//4. Métodos para Árbol Rojo-Negro
 	string insertarEnRN(int);
-	void eliminarEnRN(int);
+	string eliminarEnRN(int);
 	void imprimirRN();
 	void mostrarPreOrdenRN();
 	void mostrarInOrdenRN();
