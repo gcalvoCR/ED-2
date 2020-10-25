@@ -22,6 +22,13 @@ public:
 	string mostrarInOrdenAVL();
 	string mostrarPostOrdenAVL();
 	//2. Métodos para Árbol B
+	string insertarElementoEnArbolB(int);
+	bool validarOrdenArbol();
+	void insertarOrdenArbolB(int);
+	string imprimirDatosArbolB();
+	string imprimirEstadoArbolB();
+	string buscarElementoEnArbolB(int);
+	string eliminarElementoEnArbolB(int);
 	//3. Métodos para Árbol B+
 	//4. Métodos para Árbol Rojo-Negro
 	string insertarEnRN(int);

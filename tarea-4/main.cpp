@@ -22,8 +22,10 @@ void mostrarPreOrdenAVL();
 void mostrarInOrdenAVL();
 void mostrarPostOrdenAVL();
 void insertarEnArbolB();
+void ingresarOrdenArbolB();
 void imprimirListaArbolB();
 void imprimirPruebaArbolB();
+void buscarEnArbolB();
 void eliminarEnArbolB();
 void insertarEnArbolRojoNegro();
 void imprimirListaArbolRojoNegro();
@@ -171,19 +173,20 @@ void menuArbolB()
     do
     {
         cout << "-------------------------------------" << endl;
-        cout << "ÁRBOL B" << endl;
+        cout << "ARBOL B" << endl;
         cout << "-------------------------------------" << endl;
         cout << "Favor digite una opcion:" << endl;
         cout << "1. Agregar elemento a arbol B." << endl;
         cout << "2. Imprimir lista de números agregados." << endl;
-        cout << "3. Imprimir prueba de arbol B." << endl;
-        cout << "4. liminar elemento del arbol B." << endl;
-        cout << "5. Volver al menu principal." << endl;
+        cout << "3. Imprimir estado de arbol B." << endl;
+        cout << "4. Buscar elemento en arbol B." << endl;
+        cout << "5. Eliminar elemento del arbol B." << endl;
+        cout << "6. Volver al menu principal." << endl;
         cout << "0. Salir." << endl;
         cout << "-------------------------------------" << endl;
         cin >> answer;
 
-        menuArbolAVLImp(answer);
+        menuArbolBImp(answer);
 
         if (answer == 0)
         {
@@ -212,10 +215,14 @@ int menuArbolBImp(int answer)
         system("PAUSE");
         break;
     case 4:
-        eliminarEnArbolB();
+        buscarEnArbolB();
         system("PAUSE");
         break;
     case 5:
+        eliminarEnArbolB();
+        system("PAUSE");
+        break;
+    case 6:
         main();
         break;
     case 0:
@@ -248,7 +255,7 @@ void menuArbolBPlus()
         cout << "-------------------------------------" << endl;
         cin >> answer;
 
-        menuArbolAVLImp(answer);
+        menuArbolBPlusImp(answer);
 
         if (answer == 0)
         {
@@ -410,19 +417,104 @@ void mostrarPostOrdenAVL() {
 
 //2. Métodos para menú de árbol B
 void insertarEnArbolB() {
+    int input = -1;
+    bool valid = false;
 
+    if (gestor->validarOrdenArbol()) {
+        do
+        {
+            cout << "Favor digite un numero entero a agregar: " << flush;
+            cin >> input;
+            if (cin.good())
+            {
+                valid = true;
+            }
+            else
+            {
+                cin.clear();
+                //cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Error. Favor inserte un numero entero." << endl;
+            }
+        } while (!valid);
+
+        cout << gestor->insertarElementoEnArbolB(input);
+    }
+    else {
+        ingresarOrdenArbolB();
+    }
+}
+
+void ingresarOrdenArbolB() {
+    int orden = -1;
+    bool valid = false;
+    do
+    {
+        cout << "Favor digite el orden del arbol B (entre 3 y 10): " << flush;
+        cin >> orden;
+        if (cin.good())
+        {
+            valid = true;
+        }
+        else
+        {
+            cin.clear();
+            //cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Error. Favor inserte un numero entero." << endl;
+        }
+    } while (orden < 3 || orden>10);
+    gestor->insertarOrdenArbolB(orden);
 }
 
 void imprimirListaArbolB() {
-
+    cout << gestor->imprimirDatosArbolB() << endl;
 }
         
 void imprimirPruebaArbolB() {
+    cout << gestor->imprimirEstadoArbolB() << endl;
+}
 
+void buscarEnArbolB() {
+    int input = -1;
+    bool valid = false;
+    do
+    {
+        cout << "Favor digite un numero entero a buscar: " << flush;
+        cin >> input;
+        if (cin.good())
+        {
+            valid = true;
+        }
+        else
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Error. Favor inserte un numero entero." << endl;
+        }
+    } while (!valid);
+
+    cout << gestor->buscarElementoEnArbolB(input) << endl;
 }
 
 void eliminarEnArbolB() {
+    int input = -1;
+    bool valid = false;
+    do
+    {
+        cout << "Favor digite un numero entero a agregar: " << flush;
+        cin >> input;
+        if (cin.good())
+        {
+            valid = true;
+        }
+        else
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Error. Favor inserte un numero entero." << endl;
+        }
+    } while (!valid);
 
+    cout << gestor->eliminarElementoEnArbolB(input) << endl;
 }
 
 //3. Métodos para menú de árbol B+

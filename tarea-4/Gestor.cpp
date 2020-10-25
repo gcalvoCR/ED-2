@@ -21,7 +21,58 @@ string Gestor::mostrarPostOrdenAVL() {
 	return arbolAVL.postOrden();
 }
 
+//2. Métodos en Arbol B
 
+string Gestor::insertarElementoEnArbolB(int pDato) {
+	bool cond = arbolB.agregar(pDato);
+	string msg;
+	if (cond) {
+		msg = "Numero entero agregado con exito.";
+	}
+	else {
+		msg = "Numero entero se encuentra repetido. Intente de nuevo.";
+	}
+	return msg;
+}
+bool Gestor::validarOrdenArbol() {
+	bool rslt = false;
+	if (arbolB.getOrden() != 0) {
+		rslt = true;
+	}
+	return rslt;
+}
+void Gestor::insertarOrdenArbolB(int pOrden) {
+	arbolB.setOrden(pOrden);
+}
+string Gestor::imprimirDatosArbolB() {
+	return arbolB.pintar();
+
+}
+string Gestor::imprimirEstadoArbolB() {
+	return arbolB.pintarArbol();
+}
+string Gestor::buscarElementoEnArbolB(int pDato) {
+	bool cond = arbolB.buscar(pDato);
+	string msg;
+	if (cond) {
+		msg += "El dato " + to_string(pDato) + " SI se encuentra en el arbol B.";
+	}
+	else {
+		msg = "El dato " + to_string(pDato) + " NO se encuentra en el arbol B.";
+	}
+	return msg;
+}
+string Gestor::eliminarElementoEnArbolB(int pDato) {
+	bool cond = arbolB.borrar(pDato);
+	string msg;
+	if (cond) {
+		msg = "Numero entero eliminar con exito.";
+	}
+	else {
+		msg = "Numero no existe en el árbol B. Intente de nuevo.";
+	}
+	return msg;
+}
 
 //4. Metods en Arbol RN
 string Gestor::insertarEnRN(int pDato) {
