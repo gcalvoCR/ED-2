@@ -55,7 +55,7 @@ int main()
         cout << "2. Arbol B." << endl;
         cout << "3. Arbol B+." << endl;
         cout << "4. Arbol Rojo-Negro." << endl;
-        cout << "5. Buscar AVL." << endl;
+        cout << "0. Salir del sistema." << endl;
         cout << "-------------------------------------" << endl;
         cin >> answer;
         system("CLS");
@@ -117,7 +117,7 @@ void menuArbolAVL()
         cout << "ARBOL AVL" << endl;
         cout << "-------------------------------------" << endl;
         cout << "Favor digite una opcion:" << endl;
-        cout << "1. Insertar dato en arbol AVL (AVL)." << endl;
+        cout << "1. Insertar dato en arbol AVL." << endl;
         cout << "2. Mostrar datos en preorden." << endl;
         cout << "3. Mostrar datos en inorden." << endl;
         cout << "4. Mostrar datos en postorden." << endl;
@@ -130,7 +130,7 @@ void menuArbolAVL()
 
         menuArbolAVLImp(answer);
 
-        if (answer == 5)
+        if (answer == 7)
         {
             keepLooping = false;
         }
@@ -147,6 +147,7 @@ int menuArbolAVLImp(int answer)
     {
     case 1:
         insertarEnAVL();
+        system("PAUSE");
         break;
     case 2:
         mostrarPreOrdenAVL();
@@ -168,8 +169,7 @@ int menuArbolAVLImp(int answer)
         borrarAVL();
         system("PAUSE");
         break;
-    case 0:
-        cout << "Gracias por usar el sistema." << endl;
+    case 7:
         break;
     default:
         cout << "Opcion incorrecta. Favor digite de nuevo." << endl;
