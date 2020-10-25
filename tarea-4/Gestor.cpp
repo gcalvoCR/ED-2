@@ -18,11 +18,11 @@ string Gestor::buscarEnAVL(int pDato) {
 	string msg;
 	if (existe)
 	{
-		msg = "El numero esta";
+		msg = "El numero esta en al arbol AVL";
 	}
 	else
 	{
-		msg = "El numero no esta";
+		msg = "El numero no esta en al arbol AVL";
 	}
 
 	return msg;
@@ -35,11 +35,11 @@ string Gestor::eliminarAVL(int pDato) {
 
 	if (borrado)
 	{
-		msg = "Numero borrado";
+		msg = "Numero borrado del arbol AVL";
 	}
 	else
 	{
-		msg = "Numero no borrado";
+		msg = "Numero no existe en el arbol AVL";
 	}
 
 	return msg;
