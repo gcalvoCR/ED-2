@@ -42,9 +42,11 @@ public:
     int peso();                     // numero de elementos
     bool esHoja(Nodo* pnodo);       // verifica si elemento es hoja
     int numHojas();                 // devuelve el numero de hojas
-    bool estaVacio();               // verifica si el arbol esta vacio
-    void borrar(int pdato);         // borra elemento
-    bool buscar(int pdato);         // busca elemento en el arbol 
+    bool estaVacio();
+    bool estaVacio(Nodo* r) { return r == NULL; };               // verifica si el arbol esta vacio
+    bool borrar(int pdato);
+    bool buscar(Nodo* nodo, int pdato);
+    bool buscarEnAVL(int pDato);         // busca elemento en el arbol 
     int altura();                   // devuelve la altura del arbol
 
     //Mostrar datos en pre-in-post-orden

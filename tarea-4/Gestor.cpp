@@ -11,6 +11,40 @@ string Gestor::insertarEnAVL(int pDato) {
 	}
 	return msg;
 }
+
+string Gestor::buscarEnAVL(int pDato) {
+
+	bool existe = arbolAVL.buscarEnAVL(pDato);
+	string msg;
+	if (existe)
+	{
+		msg = "El numero esta";
+	}
+	else
+	{
+		msg = "El numero no esta";
+	}
+
+	return msg;
+}
+
+string Gestor::eliminarAVL(int pDato) {
+
+	bool borrado = arbolAVL.borrar(pDato);
+	string msg;
+
+	if (borrado)
+	{
+		msg = "Numero borrado";
+	}
+	else
+	{
+		msg = "Numero no borrado";
+	}
+
+	return msg;
+}
+
 string Gestor::mostrarPreOrdenAVL() {
 	return arbolAVL.preOrden();
 }

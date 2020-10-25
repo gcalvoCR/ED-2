@@ -21,6 +21,8 @@ public:
 	string mostrarPreOrdenAVL();
 	string mostrarInOrdenAVL();
 	string mostrarPostOrdenAVL();
+	string buscarEnAVL(int);
+	string eliminarAVL(int);
 	//2. Métodos para Árbol B
 	string insertarElementoEnArbolB(int);
 	bool validarOrdenArbol();
