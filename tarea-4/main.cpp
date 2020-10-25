@@ -27,6 +27,9 @@ void imprimirListaArbolB();
 void imprimirPruebaArbolB();
 void buscarEnArbolB();
 void eliminarEnArbolB();
+void insertarEnArbolBPlus();
+void ingresarOrdenArbolBPlus();
+void imprimirListaArbolBPlus();
 void insertarEnArbolRojoNegro();
 void imprimirListaArbolRojoNegro();
 void eliminarEnArbolRojoNegro();
@@ -243,14 +246,12 @@ void menuArbolBPlus()
     do
     {
         cout << "-------------------------------------" << endl;
-        cout << "ÁRBOL B +" << endl;
+        cout << "ARBOL B + de orden 3" << endl;
         cout << "-------------------------------------" << endl;
         cout << "Favor digite una opcion:" << endl;
-        cout << "1. Agregar elemento a Árbol B +." << endl;
-        cout << "2. Imprimir lista de números agregados." << endl;
-        cout << "3. Imprimir prueba de árbol B +." << endl;
-        cout << "4. liminar elemento del Árbol B +." << endl;
-        cout << "5. Volver al menu principal." << endl;
+        cout << "1. Agregar elemento al arbol B+." << endl;
+        cout << "2. Imprimir arbol B+." << endl;
+        cout << "3. Volver al menu principal." << endl;
         cout << "0. Salir." << endl;
         cout << "-------------------------------------" << endl;
         cin >> answer;
@@ -273,21 +274,13 @@ int menuArbolBPlusImp(int answer)
     switch (answer)
     {
     case 1:
-       // insertarEnArbolB();
+        insertarEnArbolBPlus();
         break;
     case 2:
-        //imprimirListaArbolB();
+        imprimirListaArbolBPlus();
         system("PAUSE");
         break;
     case 3:
-       // imprimirPruebaArbolB();
-        system("PAUSE");
-        break;
-    case 4:
-       // eliminarEnArbolB();
-        system("PAUSE");
-        break;
-    case 5:
         main();
         break;
     case 0:
@@ -518,7 +511,58 @@ void eliminarEnArbolB() {
 }
 
 //3. Métodos para menú de árbol B+
+void insertarEnArbolBPlus() {
+    int input = -1;
+    bool valid = false;
 
+    if (gestor->validarOrdenArbolBPlus()) {
+        do
+        {
+            cout << "Favor digite un numero entero a agregar: " << flush;
+            cin >> input;
+            if (cin.good())
+            {
+                valid = true;
+            }
+            else
+            {
+                cin.clear();
+                //cin.ignore(numeric_limits<streamsize>::max(), '\n');
+                cout << "Error. Favor inserte un numero entero." << endl;
+            }
+        } while (!valid);
+
+        cout << gestor->insertarElementoEnArbolBPlus(input);
+    }
+    else {
+        ingresarOrdenArbolBPlus();
+    }
+}
+
+void ingresarOrdenArbolBPlus() {
+    int orden = -1;
+    bool valid = false;
+    do
+    {
+        cout << "Favor digite el orden del arbol B + (entre 3 y 10): " << flush;
+        cin >> orden;
+        if (cin.good())
+        {
+            valid = true;
+        }
+        else
+        {
+            cin.clear();
+            //cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Error. Favor inserte un numero entero." << endl;
+        }
+    } while (orden < 3 || orden>10);
+    gestor->insertarOrdenArbolBPlus(orden);
+}
+
+void imprimirListaArbolBPlus() {
+    gestor->imprimirDatosArbolBPlus();
+}
 
 //4. Metodos para menu de Arbol Rojo y Negro
 

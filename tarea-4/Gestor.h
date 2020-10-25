@@ -30,6 +30,10 @@ public:
 	string buscarElementoEnArbolB(int);
 	string eliminarElementoEnArbolB(int);
 	//3. Métodos para Árbol B+
+	string insertarElementoEnArbolBPlus(int);
+	void imprimirDatosArbolBPlus();
+	bool validarOrdenArbolBPlus();
+	void insertarOrdenArbolBPlus(int);
 	//4. Métodos para Árbol Rojo-Negro
 	string insertarEnRN(int);
 	string eliminarEnRN(int);

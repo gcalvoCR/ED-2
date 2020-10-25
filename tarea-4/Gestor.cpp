@@ -22,7 +22,6 @@ string Gestor::mostrarPostOrdenAVL() {
 }
 
 //2. Métodos en Arbol B
-
 string Gestor::insertarElementoEnArbolB(int pDato) {
 	bool cond = arbolB.agregar(pDato);
 	string msg;
@@ -74,6 +73,32 @@ string Gestor::eliminarElementoEnArbolB(int pDato) {
 	return msg;
 }
 
+//3. Métodos en Arbol B+
+string Gestor::insertarElementoEnArbolBPlus(int pDato) {
+	bool cond = arbolBPlus.agregar(pDato);
+	string msg;
+	if (cond) {
+		msg += "Numero entero agregado con exito.\n";
+	}
+	else {
+		msg = "Numero entero se encuentra repetido. Intente de nuevo.";
+	}
+	return msg;
+}
+void Gestor::imprimirDatosArbolBPlus() {
+	arbolBPlus.imprimirArbol();
+}
+bool  Gestor::validarOrdenArbolBPlus() {
+	bool rslt = false;
+	if (arbolBPlus.getOrden() != 0) {
+		rslt = true;
+	}
+	return rslt;
+}
+void  Gestor::insertarOrdenArbolBPlus(int pOrden) {
+	arbolBPlus.setOrden(pOrden);
+}
+
 //4. Metodos en Arbol RN
 string Gestor::insertarEnRN(int pDato) {
 	bool cond = arbolRN.insertar(pDato);
@@ -86,7 +111,6 @@ string Gestor::insertarEnRN(int pDato) {
 	}
 	return msg;
 }
-
 string Gestor::eliminarEnRN(int pdato)
 {
 	bool cond = arbolRN.borrarNodo(pdato);
