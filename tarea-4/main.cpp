@@ -58,7 +58,7 @@ int main()
         cin >> answer;
         system("CLS");
 
-        menuPrincipal(answer);
+        keepLooping = menuPrincipal(answer);
 
         if (answer == 0)
         {
@@ -108,6 +108,7 @@ void menuArbolAVL()
     int answer;
     bool keepLooping = true;
 
+    system("CLS");
     do
     {
         cout << "-------------------------------------" << endl;
@@ -119,13 +120,13 @@ void menuArbolAVL()
         cout << "3. Mostrar datos en inorden." << endl;
         cout << "4. Mostrar datos en postorden." << endl;
         cout << "5. Volver al menu principal." << endl;
-        cout << "0. Salir." << endl;
         cout << "-------------------------------------" << endl;
         cin >> answer;
+        system("CLS");
 
         menuArbolAVLImp(answer);
 
-        if (answer == 0)
+        if (answer == 5)
         {
             keepLooping = false;
         }
@@ -156,14 +157,11 @@ int menuArbolAVLImp(int answer)
         system("PAUSE");
         break;
     case 5:
-        main();
-        break;
-    case 0:
-        cout << "Gracias por usar el sistema." << endl;
         break;
     default:
         cout << "Opcion incorrecta. Favor digite de nuevo." << endl;
     }
+    
     return answer;
 }
 
@@ -173,6 +171,7 @@ void menuArbolB()
     int answer;
     bool keepLooping = true;
 
+    system("CLS");
     do
     {
         cout << "-------------------------------------" << endl;
@@ -185,13 +184,13 @@ void menuArbolB()
         cout << "4. Buscar elemento en arbol B." << endl;
         cout << "5. Eliminar elemento del arbol B." << endl;
         cout << "6. Volver al menu principal." << endl;
-        cout << "0. Salir." << endl;
         cout << "-------------------------------------" << endl;
         cin >> answer;
 
         menuArbolBImp(answer);
+        system("CLS");
 
-        if (answer == 0)
+        if (answer == 6)
         {
             keepLooping = false;
         }
@@ -208,6 +207,7 @@ int menuArbolBImp(int answer)
     {
     case 1:
         insertarEnArbolB();
+        system("PAUSE");
         break;
     case 2:
         imprimirListaArbolB();
@@ -226,10 +226,6 @@ int menuArbolBImp(int answer)
         system("PAUSE");
         break;
     case 6:
-        main();
-        break;
-    case 0:
-        cout << "Gracias por usar el sistema." << endl;
         break;
     default:
         cout << "Opcion incorrecta. Favor digite de nuevo." << endl;
@@ -243,6 +239,7 @@ void menuArbolBPlus()
     int answer;
     bool keepLooping = true;
 
+    system("CLS");
     do
     {
         cout << "-------------------------------------" << endl;
@@ -252,13 +249,13 @@ void menuArbolBPlus()
         cout << "1. Agregar elemento al arbol B+." << endl;
         cout << "2. Imprimir arbol B+." << endl;
         cout << "3. Volver al menu principal." << endl;
-        cout << "0. Salir." << endl;
         cout << "-------------------------------------" << endl;
         cin >> answer;
 
         menuArbolBPlusImp(answer);
+        system("CLS");
 
-        if (answer == 0)
+        if (answer == 3)
         {
             keepLooping = false;
         }
@@ -281,10 +278,6 @@ int menuArbolBPlusImp(int answer)
         system("PAUSE");
         break;
     case 3:
-        main();
-        break;
-    case 0:
-        cout << "Gracias por usar el sistema." << endl;
         break;
     default:
         cout << "Opcion incorrecta. Favor digite de nuevo." << endl;
@@ -298,6 +291,7 @@ void menuArbolRojoNegro()
     int answer;
     bool keepLooping = true;
 
+    system("CLS");
     do
     {
         cout << "-------------------------------------" << endl;
@@ -311,13 +305,12 @@ void menuArbolRojoNegro()
         cout << "5. Mostrar datos en inorden." << endl;
         cout << "6. Mostrar datos en postorden." << endl;
         cout << "7. Volver al menu principal." << endl;
-        cout << "0. Salir." << endl;
         cout << "-------------------------------------" << endl;
         cin >> answer;
-
+        system("CLS");
         menuArbolRojoNegroImp(answer);
 
-        if (answer == 0)
+        if (answer == 7)
         {
             keepLooping = false;
         }
@@ -358,10 +351,6 @@ int menuArbolRojoNegroImp(int answer)
         system("PAUSE");
         break;
     case 7:
-        main();
-        break;
-    case 0:
-        cout << "Gracias por usar el sistema." << endl;
         break;
     default:
         cout << "Opcion incorrecta. Favor digite de nuevo." << endl;
@@ -434,6 +423,7 @@ void insertarEnArbolB() {
     }
     else {
         ingresarOrdenArbolB();
+        insertarEnArbolB();
     }
 }
 
