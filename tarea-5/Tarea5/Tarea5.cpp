@@ -190,7 +190,7 @@ void mostrarEtiquetas() {
     cout << controller->mostrarEtiquetas();
 }
 
-//1. Menú para grafo con lista de adyacencia
+//2. Menú para grafo con lista de adyacencia
 
 void menuGrafoLista()
 {
