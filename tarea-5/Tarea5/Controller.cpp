@@ -61,10 +61,10 @@ string Controller::insertar_arista_segundoGrafo(char pInicio, char pFin) {
 	bool cond = segundoGrafo.insertar_arista(pInicio, pFin);
 	string msg;
 	if (cond) {
-		msg = "Arista agregada con exito.";
+		msg = "Arco agregada con exito.";
 	}
 	else {
-		msg = "Arista no se pudo agregar. Intente de nuevo.";
+		msg = "Arco no se pudo agregar. Intente de nuevo.";
 	}
 	return msg;
 }
@@ -73,10 +73,10 @@ string Controller::eliminar_nodo_segundoGrafo(char pVar) {
 	bool cond = segundoGrafo.eliminar_nodo(pVar);
 	string msg;
 	if (cond) {
-		msg = "Nodo eliminado con exito.";
+		msg = "Vertice eliminado con exito.";
 	}
 	else {
-		msg = "Nodo no se pudo eliminar. Intente de nuevo.";
+		msg = "Vertice no se pudo eliminar. Intente de nuevo.";
 	}
 	return msg;
 }
@@ -85,10 +85,10 @@ string Controller::eliminar_arista_segundoGrafo(char pInicio, char pFin) {
 	bool cond = segundoGrafo.eliminar_arista(pInicio, pFin);
 	string msg;
 	if (cond) {
-		msg = "Arista eliminado con exito.";
+		msg = "Arco eliminado con exito.";
 	}
 	else {
-		msg = "Arista no se pudo eliminar. Intente de nuevo.";
+		msg = "Arco no se pudo eliminar. Intente de nuevo.";
 	}
 	return msg;
 }

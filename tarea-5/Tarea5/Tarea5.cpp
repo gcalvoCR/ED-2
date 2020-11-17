@@ -205,12 +205,12 @@ void menuGrafoLista()
         cout << "Grafos dirigidos: lista de adyacencia" << endl;
         cout << "-------------------------------------" << endl;
         cout << "Favor digite una opcion:" << endl;
-        cout << "1. Insertar un nodo." << endl;
-        cout << "2. Insertar una arista." << endl;
-        cout << "3. Eliminar un nodo." << endl;
-        cout << "4. Eliminar una arista." << endl;
+        cout << "1. Insertar un nuevo vertice." << endl;
+        cout << "2. Insertar un arco." << endl;
+        cout << "3. Eliminar un vertice." << endl;
+        cout << "4. Eliminar un arco." << endl;
         cout << "5. Mostrar grafo." << endl;
-        cout << "6. Mostrar aristas de un nodo." << endl;
+        cout << "6. Mostrar arcos de un vertice." << endl;
         cout << "7. Volver al menu principal." << endl;
         cout << "-------------------------------------" << endl;
         cin >> answer;
@@ -269,7 +269,7 @@ int menuGrafoListaImp(int answer)
 
 void insertarNodoSegundoGrafo() {
     char input;
-    cout << "Favor insertar nodo a agregar: " << flush;
+    cout << "Favor insertar vertice a agregar: " << flush;
     cin >> input;
     cout << controller->insertar_nodo_segundoGrafo(input) << endl;
 }
@@ -280,19 +280,19 @@ void insertarAristaSegundoGrafo() {
         char ini, fin;
         do
         {
-            cout << "Ingrese nodo de inicio de la lista de nodos:";
+            cout << "Ingrese vertice de inicio de la lista de vertices:";
             cin >> ini;
         } while (!verificarExistenciaNodoSegundoGrafo(ini));
 
         do
         {
-            cout << "Ingrese nodo de final de la lista de nodos:";
+            cout << "Ingrese vertice de final de la lista de vertices:";
             cin >> fin;
         } while (!verificarExistenciaNodoSegundoGrafo(fin));
         cout << controller->insertar_arista_segundoGrafo(ini, fin) << endl;
     }
     else {
-        cout << "Grafo vacio. No se puede insertar aristas." << endl;
+        cout << "Grafo vacio. No se puede insertar arcos." << endl;
     }
 }
 
@@ -302,13 +302,13 @@ void eliminarNodoSegundoGrafo() {
         char input;
         do
         {
-            cout << "Favor insertar nodo a eliminar: " << flush;
+            cout << "Favor insertar vertice a eliminar: " << flush;
             cin >> input;
         } while (!verificarExistenciaNodoSegundoGrafo(input));
         cout << controller->eliminar_nodo_segundoGrafo(input) << endl;
     }
     else {
-        cout << "Grafo vacio. No se puede eliminar nodos." << endl;
+        cout << "Grafo vacio. No se puede eliminar vertices." << endl;
     }
 
 }
@@ -319,20 +319,20 @@ void eliminarAristaSegundoGrafo() {
         char ini, fin;
         do
         {
-            cout << "Ingrese nodo de inicio de la lista de nodos:";
+            cout << "Ingrese vertice de inicio de la lista de vertices:";
             cin >> ini;
         } while (!verificarExistenciaNodoSegundoGrafo(ini));
 
         do
         {
-            cout << "Ingrese nodo de final de la lista de nodos:";
+            cout << "Ingrese vertice de final de la lista de vertices:";
             cin >> fin;
         } while (!verificarExistenciaNodoSegundoGrafo(fin));
 
         cout << controller->eliminar_arista_segundoGrafo(ini, fin) << endl;
     }
     else {
-        cout << "Grafo vacio. No se puede eliminar aristas." << endl;
+        cout << "Grafo vacio. No se puede eliminar arcos." << endl;
     }
 
 }
@@ -352,14 +352,14 @@ void mostrarAristasSegundoGrafo() {
         char input;
         do
         {
-            cout << "Mostrar aristas de nodo: " << flush;
+            cout << "Mostrar arcos de vertice: " << flush;
             cin >> input;
         } while (!verificarExistenciaNodoSegundoGrafo(input));
 
         cout << controller->mostrar_aristas_segundoGrafo(input) << endl;
     }
     else {
-        cout << "Grafo vacio. No se puede mostrar aristas." << endl;
+        cout << "Grafo vacio. No se puede mostrar arcos." << endl;
     }
 }
 

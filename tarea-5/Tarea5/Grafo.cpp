@@ -82,21 +82,21 @@ string Grafo::insertar_nodo(char pDato)
     if (p == NULL)
     {
         p = nuevo;
-        rslt = "Primer nodo insertado.";
+        rslt = "Primer vertice insertado.";
     }
     else
     {
         t = p;
 
         if (t->nombre == nuevo->nombre) {
-            rslt = "No se puede insertar. Nodo repetido";
+            rslt = "No se puede insertar. Vertice repetido";
             repetido = true;
         }
         else {
             while (t->sgte != NULL)
             {
                 if (t->sgte->nombre == nuevo->nombre) {
-                    rslt = "No se puede insertar. Nodo repetido";
+                    rslt = "No se puede insertar. Vertice repetido";
                     repetido = true;
                     break;
                 }
@@ -107,7 +107,7 @@ string Grafo::insertar_nodo(char pDato)
         }
         if (!repetido) {
             t->sgte = nuevo;
-            rslt = "Nodo ingresado correctamente";
+            rslt = "Vertice ingresado correctamente";
         }
 
     }
@@ -124,7 +124,7 @@ void Grafo::agrega_arista(Tnodo& aux, Tnodo& aux2, Tarista& nuevo)
     {
         aux->ady = nuevo;
         nuevo->destino = aux2;
-        cout << "PRIMERA ARISTA....!";
+        cout << "Primer arco agregado.";
     }
     else
     {
@@ -133,7 +133,7 @@ void Grafo::agrega_arista(Tnodo& aux, Tnodo& aux2, Tarista& nuevo)
             q = q->sgte;
         nuevo->destino = aux2;
         q->sgte = nuevo;
-        cout << "ARISTA AGREGADA...!!!!";
+        cout << "Arco agregado.";
     }
 
 }
@@ -287,7 +287,7 @@ string Grafo::mostrar_grafo()
     Tarista ar;
     ptr = p;
     string rslt = "";
-    rslt += "NODO|LISTA DE ADYACENCIA\n";
+    rslt += "VERTICE|LISTA DE ADYACENCIA\n";
 
     while (ptr != NULL)
     {
@@ -326,12 +326,12 @@ string Grafo::mostrar_aristas(char var)
         {
             if (aux->ady == NULL)
             {
-                rslt += "El nodo no tiene aristas";
+                rslt += "El vertice no tiene arcos";
                 return rslt;
             }
             else
             {
-                rslt += "NODO|LISTA DE ADYACENCIA\n";
+                rslt += "VERTICE|LISTA DE ADYACENCIA\n";
                 rslt += "   ";
                 rslt += aux->nombre;
                 rslt += "|";
@@ -359,7 +359,7 @@ string Grafo::imprimirNodos() {
     Tarista ar;
     ptr = p;
     string rslt = "";
-    rslt += "Lista de nodos en el grafo:\n";
+    rslt += "Lista de vertices en el grafo:\n";
 
     while (ptr != NULL)
     {
