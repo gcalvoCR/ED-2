@@ -16,9 +16,6 @@ Controller::Controller() {
     grafo = new Grafo();
 }
 
-Controller::Controller(const Controller& orig) {
-}
-
 Controller::~Controller() {
 }
 
@@ -26,29 +23,28 @@ Grafo* Controller::getGrafo() {
     return grafo;
 }
 
-bool Controller::agregarEnArreglo(int pPosicion, string pCiudad) {
-    return getGrafo()->insertarArreglo(pPosicion, pCiudad);
-
+bool Controller::insertarVerticeEnArreglo(int pPosicion, int pVertice) {
+    return grafo->insertarVertice(pPosicion, pVertice);
 }
 
-string Controller::agregarEnMatriz(int pFila, int pColumna, int pDistancia, int pTiempo) {
-    Etiqueta etiqueta(pDistancia, pTiempo);
-    getGrafo()->insertarEtiqueta(pFila, pColumna, etiqueta);
+string Controller::agregarArcoEnMatriz(int pFila, int pColumna, int pPeso) {
+    Etiqueta etiqueta(pPeso);
+    grafo->insertarEtiqueta(pFila, pColumna, etiqueta);
     return "Datos guardados";
 }
 
-int Controller::buscarCiudad(string pCiudad) {
-    return getGrafo()->buscarCiudad(pCiudad);
+int Controller::buscarVertice(int pVertice) {
+    return getGrafo()->buscarVertice(pVertice);
 }
 
-string Controller::buscarEtiqueta(int pFila, int pColumna) {
+int Controller::buscarEtiqueta(int pFila, int pColumna) {
     return getGrafo()->buscarDatosEtiqueta(pFila, pColumna);
 }
 
-string Controller::mostrarCiudades() {
-    return getGrafo()->mostrarArreglo();
+string Controller::mostrarVertices() {
+    return getGrafo()->mostrarVertices();
 }
 
 string Controller::mostrarEtiquetas() {
-    return getGrafo()->mostrarEtiquetas();
+    return getGrafo()->mostrarArcos();
 }

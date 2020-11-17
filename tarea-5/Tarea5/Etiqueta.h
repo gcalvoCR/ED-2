@@ -12,16 +12,13 @@ using namespace std;
 class Etiqueta {
 public:
     Etiqueta();
-    Etiqueta(int, int);
-    int getDistancia();
-    void setDistancia(int);
-    int getMinutos();
-    void setMinutos(int);
+    Etiqueta(int);
+    int getPeso();
+    void setPeso(int);
     string toString();
 
 private:
-    int distancia;
-    int minutos;
+    int peso;
 };
 
 #endif /* ETIQUETA_H */

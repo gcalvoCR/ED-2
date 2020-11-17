@@ -9,34 +9,24 @@
 
 
 Etiqueta::Etiqueta() {
-    setDistancia(0);
-    setMinutos(0);
+    setPeso(0);
 }
 
-Etiqueta::Etiqueta(int pDistancia, int pMinutos) {
-    setDistancia(pDistancia);
-    setMinutos(pMinutos);
+Etiqueta::Etiqueta(int pPeso) {
+    setPeso(pPeso);
 }
 
 
-int Etiqueta::getDistancia() {
-    return distancia;
+int Etiqueta::getPeso() {
+    return peso;
 }
 
-void Etiqueta::setDistancia(int pDistancia) {
-    distancia = pDistancia;
-}
-
-int Etiqueta::getMinutos() {
-    return minutos;
-}
-
-void Etiqueta::setMinutos(int pMinutos) {
-    minutos = pMinutos;
+void Etiqueta::setPeso(int pPeso) {
+    peso = pPeso;
 }
 
 string Etiqueta::toString() {
     ostringstream s;
-    s << distancia << " metros y " << minutos << " minutos \n";
+    s << peso << " peso \n";
     return s.str();
 }

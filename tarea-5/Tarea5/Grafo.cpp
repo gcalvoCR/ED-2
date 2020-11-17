@@ -26,9 +26,9 @@ bool Grafo::insertarEtiqueta(int pFila, int pColumna, Etiqueta pEtiqueta) {
     return true;
 }
 
-bool Grafo::insertarArreglo(int pPosicion, string pCiudad) {
-    if (buscarCiudad(pCiudad) == -1) {
-        referencia[pPosicion] = pCiudad;
+bool Grafo::insertarVertice(int pPosicion, int pVertice) {
+    if (buscarVertice(pVertice) == -1) {
+        referencia[pPosicion] = pVertice;
         return true;
     }
     else {
@@ -36,28 +36,28 @@ bool Grafo::insertarArreglo(int pPosicion, string pCiudad) {
     }
 }
 
-int Grafo::buscarCiudad(string pCiudad) {
+int Grafo::buscarVertice(int pVertice) {
     for (int i = 0; i < 8; i++) {
-        if (referencia[i] == pCiudad) {
+        if (referencia[i] == pVertice) {
             return i;
         }
     }
     return -1;
 }
 
-string Grafo::buscarDatosEtiqueta(int pFila, int pColumna) {
-    return matriz[pFila][pColumna].toString();
+int Grafo::buscarDatosEtiqueta(int pFila, int pColumna) {
+    return matriz[pFila][pColumna].getPeso();
 }
 
-string Grafo::mostrarArreglo() {
+string Grafo::mostrarVertices() {
     ostringstream s;
     for (int i = 0; i < 8; i++) {
-        s << "Ciudad # " << i << " " << referencia[i] << "\n";
+        s << "Vertice # " << i << " " << referencia[i] << "\n";
     }
     return s.str();
 }
 
-string Grafo::mostrarEtiquetas() {
+string Grafo::mostrarArcos() {
     ostringstream s;
     for (int i = 0; i < 8; i++) {
         for (int j = 0; j < 8; j++) {
