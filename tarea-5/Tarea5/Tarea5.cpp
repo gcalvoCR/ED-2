@@ -10,58 +10,120 @@
 
 #include "Controller.h"
 
-Controller controller;
-void mostrarMenu();
-int leerOpcion();
-void ejecutarAccion(int);
+static Controller* controller = new Controller();
+//Metodos de menus
+int menuPrincipal(int answer);
+void menuGrafoMatriz();
+int menuGrafoMatrizImp(int answer);
+void menuGrafoLista();
+int menuGrafoListaImp(int answer);
+//Metodos de matriz de adyacencia
 void insertarVertice();
 void mostrarVertices();
 void insertarArco();
 void mostrarEtiquetas();
+//Metodos lista de adyacencia
+void insertarNodoSegundoGrafo();
+void insertarAristaSegundoGrafo();
+void eliminarNodoSegundoGrafo();
+void eliminarAristaSegundoGrafo();
+void mostrarGrafoSegundoGrafo();
+void mostrarAristasSegundoGrafo();
+bool verificarExistenciaNodoSegundoGrafo(char);
 
 using namespace std;
 
-/*
- *
- */
-int main(int argc, char** argv) {
-    int opc;
-    do {
-        mostrarMenu();
-        opc = leerOpcion();
-        ejecutarAccion(opc);
-
-    } while (opc != 0);
-
-    return 0;
-}
-
-void mostrarMenu() {
+int main()
+{
+    int answer;
+    bool keepLooping = true;
 
     system("CLS");
-    cout << "---- Ejercicio usando matrices de adyacencia ----" << endl;
-    cout << " "<< endl;
-    cout << "Favor digite la opcion que desea insertar:" << endl;
-    cout << "1. Insertar vertices (8 numeros positivos)" << endl;
-    cout << "2. Mostrar vertices" << endl;
-    cout << "3. Insertar informacion de arco (peso) " << endl;
-    cout << "4. Mostrar informacion de arcos (pesos)" << endl;
-    cout << "0. Salir del sistema." << endl;
-    cout << "------------------------------------------------" << endl;
+    do
+    {
+        cout << "-------------------------------------" << endl;
+        cout << "Favor digite una opcion:" << endl;
+        cout << "1. Primer grafo: matriz de adyacencia." << endl;
+        cout << "2. Segundo grafo: lista de adyacencia." << endl;
+        cout << "0. Salir del sistema." << endl;
+        cout << "-------------------------------------" << endl;
+        cin >> answer;
+        system("CLS");
+
+        keepLooping = menuPrincipal(answer);
+
+        if (answer == 0)
+        {
+            keepLooping = false;
+        }
+        else
+        {
+            keepLooping = true;
+        }
+    } while (keepLooping);
 
 }
 
-int leerOpcion() {
-
-    int opcion;
-    cin >> opcion;
-    return opcion;
+//MENÚ PRINCIPAL
+int menuPrincipal(int answer)
+{
+    switch (answer)
+    {
+    case 1:
+        menuGrafoMatriz();
+        break;
+    case 2:
+        menuGrafoLista();
+        break;
+    case 0:
+        cout << "Gracias por usar el sistema." << endl;
+        break;
+    default:
+        cout << "Opcion incorrecta. Favor digite de nuevo." << endl;
+    }
+    return answer;
 }
 
-void ejecutarAccion(int pOpcion) {
+//1. Menú para grafo con matriz de adyacencia
+void menuGrafoMatriz()
+{
+    int answer;
+    bool keepLooping = true;
 
-    switch (pOpcion) {
+    system("CLS");
+    do
+    {
+        system("CLS");
+        cout << "-------------------------------------" << endl;
+        cout << "Ejercicio usando matrices de adyacencia" << endl;
+        cout << "-------------------------------------" << endl;
+        cout << " " << endl;
+        cout << "Favor digite la opcion que desea insertar:" << endl;
+        cout << "1. Insertar vertices (8 numeros positivos)" << endl;
+        cout << "2. Mostrar vertices" << endl;
+        cout << "3. Insertar informacion de arco (peso) " << endl;
+        cout << "4. Mostrar informacion de arcos (pesos)" << endl;
+        cout << "5. Volver al menu principal." << endl;
+        cout << "------------------------------------------------" << endl;
+        cin >> answer;
+        system("CLS");
 
+        menuGrafoMatrizImp(answer);
+
+        if (answer == 7)
+        {
+            keepLooping = false;
+        }
+        else
+        {
+            keepLooping = true;
+        }
+    } while (keepLooping);
+}
+
+int menuGrafoMatrizImp(int answer)
+{
+    switch (answer) {
     case 1:
         insertarVertice();
         system("PAUSE");
@@ -78,12 +140,14 @@ void ejecutarAccion(int pOpcion) {
         mostrarEtiquetas();
         system("PAUSE");
         break;
-    case 0:
-        cout << "Cerrando aplicación";
+    case 5:
+        main();
         break;
     default:
         cout << "OPCION INVALIDA";
     }
+
+    return answer;
 }
 
 void insertarVertice() {
@@ -94,7 +158,7 @@ void insertarVertice() {
         do {
             cout << "Digitar numero #" << i << ": ";
             cin >> numero;
-            if (controller.insertarVerticeEnArreglo(i, numero)) {
+            if (controller->insertarVerticeEnArreglo(i, numero)) {
                 cout << "Numero agregado\n";
                 bandera = false;
             }
@@ -107,7 +171,7 @@ void insertarVertice() {
 }
 
 void mostrarVertices() {
-    cout << controller.mostrarVertices();
+    cout << controller->mostrarVertices();
 }
 
 void insertarArco() {
@@ -118,10 +182,188 @@ void insertarArco() {
     cin >> numero2;
     cout << "Peso entre el 1er y 2ndo numero: ";
     cin >> peso;
-    cout << controller.agregarArcoEnMatriz(controller.buscarVertice(numero), controller.buscarVertice(numero2), peso);
+    cout << controller->agregarArcoEnMatriz(controller->buscarVertice(numero), controller->buscarVertice(numero2), peso);
 
 }
 
 void mostrarEtiquetas() {
-    cout << controller.mostrarEtiquetas();
+    cout << controller->mostrarEtiquetas();
+}
+
+//1. Menú para grafo con lista de adyacencia
+
+void menuGrafoLista()
+{
+    int answer;
+    bool keepLooping = true;
+
+    system("CLS");
+    do
+    {
+        system("CLS");
+        cout << "-------------------------------------" << endl;
+        cout << "Grafos dirigidos: lista de adyacencia" << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "Favor digite una opcion:" << endl;
+        cout << "1. Insertar un nodo." << endl;
+        cout << "2. Insertar una arista." << endl;
+        cout << "3. Eliminar un nodo." << endl;
+        cout << "4. Eliminar una arista." << endl;
+        cout << "5. Mostrar grafo." << endl;
+        cout << "6. Mostrar aristas de un nodo." << endl;
+        cout << "7. Volver al menu principal." << endl;
+        cout << "-------------------------------------" << endl;
+        cin >> answer;
+        system("CLS");
+
+        menuGrafoListaImp(answer);
+
+        if (answer == 7)
+        {
+            keepLooping = false;
+        }
+        else
+        {
+            keepLooping = true;
+        }
+    } while (keepLooping);
+}
+
+int menuGrafoListaImp(int answer)
+{
+    switch (answer)
+    {
+    case 1:
+        insertarNodoSegundoGrafo();
+        system("PAUSE");
+        break;
+    case 2:
+        insertarAristaSegundoGrafo();
+        system("PAUSE");
+        break;
+    case 3:
+        eliminarNodoSegundoGrafo();
+        system("PAUSE");
+        break;
+    case 4:
+        eliminarAristaSegundoGrafo();
+        system("PAUSE");
+        break;
+    case 5:
+        mostrarGrafoSegundoGrafo();
+        system("PAUSE");
+        break;
+    case 6:
+        mostrarAristasSegundoGrafo();
+        system("PAUSE");
+        break;
+    case 7:
+        main();
+        break;
+    default:
+        cout << "Opcion incorrecta. Favor digite de nuevo." << endl;
+    }
+
+    return answer;
+}
+
+void insertarNodoSegundoGrafo() {
+    char input;
+    cout << "Favor insertar nodo a agregar: " << flush;
+    cin >> input;
+    cout << controller->insertar_nodo_segundoGrafo(input) << endl;
+}
+
+void insertarAristaSegundoGrafo() {
+    if (!controller->verificarSegundoGrafoVacio()) {
+        cout << controller->imprimir_nodos_segundoGrafo() << endl;
+        char ini, fin;
+        do
+        {
+            cout << "Ingrese nodo de inicio de la lista de nodos:";
+            cin >> ini;
+        } while (!verificarExistenciaNodoSegundoGrafo(ini));
+
+        do
+        {
+            cout << "Ingrese nodo de final de la lista de nodos:";
+            cin >> fin;
+        } while (!verificarExistenciaNodoSegundoGrafo(fin));
+        cout << controller->insertar_arista_segundoGrafo(ini, fin) << endl;
+    }
+    else {
+        cout << "Grafo vacio. No se puede insertar aristas." << endl;
+    }
+}
+
+void eliminarNodoSegundoGrafo() {
+    if (!controller->verificarSegundoGrafoVacio()) {
+        cout << controller->imprimir_nodos_segundoGrafo() << endl;
+        char input;
+        do
+        {
+            cout << "Favor insertar nodo a eliminar: " << flush;
+            cin >> input;
+        } while (!verificarExistenciaNodoSegundoGrafo(input));
+        cout << controller->eliminar_nodo_segundoGrafo(input) << endl;
+    }
+    else {
+        cout << "Grafo vacio. No se puede eliminar nodos." << endl;
+    }
+
+}
+
+void eliminarAristaSegundoGrafo() {
+    if (!controller->verificarSegundoGrafoVacio()) {
+        cout << controller->imprimir_nodos_segundoGrafo() << endl;
+        char ini, fin;
+        do
+        {
+            cout << "Ingrese nodo de inicio de la lista de nodos:";
+            cin >> ini;
+        } while (!verificarExistenciaNodoSegundoGrafo(ini));
+
+        do
+        {
+            cout << "Ingrese nodo de final de la lista de nodos:";
+            cin >> fin;
+        } while (!verificarExistenciaNodoSegundoGrafo(fin));
+
+        cout << controller->eliminar_arista_segundoGrafo(ini, fin) << endl;
+    }
+    else {
+        cout << "Grafo vacio. No se puede eliminar aristas." << endl;
+    }
+
+}
+
+void mostrarGrafoSegundoGrafo() {
+    if (!controller->verificarSegundoGrafoVacio()) {
+        cout << controller->mostrar_grafo_segundoGrafo() << endl;
+    }
+    else {
+        cout << "Grafo vacio." << endl;
+    }
+}
+
+void mostrarAristasSegundoGrafo() {
+    if (!controller->verificarSegundoGrafoVacio()) {
+        cout << controller->imprimir_nodos_segundoGrafo() << endl;
+        char input;
+        do
+        {
+            cout << "Mostrar aristas de nodo: " << flush;
+            cin >> input;
+        } while (!verificarExistenciaNodoSegundoGrafo(input));
+
+        cout << controller->mostrar_aristas_segundoGrafo(input) << endl;
+    }
+    else {
+        cout << "Grafo vacio. No se puede mostrar aristas." << endl;
+    }
+}
+
+bool verificarExistenciaNodoSegundoGrafo(char pVar) {
+    bool cond = controller->verificarExistenciaNodoSegundoGrafo(pVar);
+    return cond;
 }

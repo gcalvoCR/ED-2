@@ -23,6 +23,8 @@ Grafo* Controller::getGrafo() {
     return grafo;
 }
 
+//1. Métodos para primer grafo (matriz de adyacencia)
+
 bool Controller::insertarVerticeEnArreglo(int pPosicion, int pVertice) {
     return grafo->insertarVertice(pPosicion, pVertice);
 }
@@ -47,4 +49,72 @@ string Controller::mostrarVertices() {
 
 string Controller::mostrarEtiquetas() {
     return getGrafo()->mostrarArcos();
+}
+
+//2. Métodos para segundo grafo (lista de adyacencia)
+string Controller::insertar_nodo_segundoGrafo(char pDato) {
+	string rslt = segundoGrafo.insertar_nodo(pDato);
+	return rslt;
+}
+
+string Controller::insertar_arista_segundoGrafo(char pInicio, char pFin) {
+	bool cond = segundoGrafo.insertar_arista(pInicio, pFin);
+	string msg;
+	if (cond) {
+		msg = "Arista agregada con exito.";
+	}
+	else {
+		msg = "Arista no se pudo agregar. Intente de nuevo.";
+	}
+	return msg;
+}
+
+string Controller::eliminar_nodo_segundoGrafo(char pVar) {
+	bool cond = segundoGrafo.eliminar_nodo(pVar);
+	string msg;
+	if (cond) {
+		msg = "Nodo eliminado con exito.";
+	}
+	else {
+		msg = "Nodo no se pudo eliminar. Intente de nuevo.";
+	}
+	return msg;
+}
+
+string Controller::eliminar_arista_segundoGrafo(char pInicio, char pFin) {
+	bool cond = segundoGrafo.eliminar_arista(pInicio, pFin);
+	string msg;
+	if (cond) {
+		msg = "Arista eliminado con exito.";
+	}
+	else {
+		msg = "Arista no se pudo eliminar. Intente de nuevo.";
+	}
+	return msg;
+}
+
+string Controller::mostrar_grafo_segundoGrafo() {
+	string rslt = segundoGrafo.mostrar_grafo();
+	return rslt;
+}
+
+string Controller::mostrar_aristas_segundoGrafo(char pVar) {
+	string rslt = segundoGrafo.mostrar_aristas(pVar);
+	return rslt;
+}
+
+string Controller::imprimir_nodos_segundoGrafo() {
+	string rslt = segundoGrafo.imprimirNodos();
+	return rslt;
+
+}
+
+bool Controller::verificarExistenciaNodoSegundoGrafo(char pVar) {
+	bool cond = segundoGrafo.verificarNodoExistente(pVar);
+	return cond;
+}
+
+bool Controller::verificarSegundoGrafoVacio() {
+	bool cond = segundoGrafo.verificarGrafoVacio();
+	return cond;
 }
