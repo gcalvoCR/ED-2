@@ -19,15 +19,15 @@ public:
     virtual ~Grafo();
     Etiqueta* getMatriz();
     bool insertarEtiqueta(int, int, Etiqueta);
-    bool insertarArreglo(int, string);
-    int buscarCiudad(string);
-    string buscarDatosEtiqueta(int, int);
-    string mostrarArreglo();
-    string mostrarEtiquetas();
+    bool insertarVertice(int, int);
+    int buscarVertice(int);
+    int buscarDatosEtiqueta(int, int);
+    string mostrarVertices();
+    string mostrarArcos();
 
 private:
     Etiqueta matriz[8][8];
-    string referencia[8];
+    int referencia[8];
 
 };
 

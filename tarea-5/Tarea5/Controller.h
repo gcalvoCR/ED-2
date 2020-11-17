@@ -14,14 +14,13 @@ using namespace std;
 class Controller {
 public:
     Controller();
-    Controller(const Controller& orig);
     virtual ~Controller();
     Grafo* getGrafo();
-    bool agregarEnArreglo(int, string);
-    string agregarEnMatriz(int, int, int, int);
-    int buscarCiudad(string);
-    string buscarEtiqueta(int, int);
-    string mostrarCiudades();
+    bool insertarVerticeEnArreglo(int, int);
+    string agregarArcoEnMatriz(int, int, int);
+    int buscarVertice(int);
+    int buscarEtiqueta(int, int);
+    string mostrarVertices();
     string mostrarEtiquetas();
 private:
     Grafo* grafo;
