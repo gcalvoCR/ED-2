@@ -62,13 +62,109 @@ bool ArbolAVL::estaVacio() {
     return false;
 }
 
-void ArbolAVL::borrar(int pdato)
+bool ArbolAVL::borrar(int pdato)
 {
+    Nodo* padre = NULL;
+    Nodo* nodo;
+    Nodo* actual;
+
+    int aux;
+
+    actual = raiz;
+    // Mientras sea posible que el valor esté en el árbol
+    while (!estaVacio(actual)) {
+        if (pdato == actual->getDato()) { // Si el valor está en el nodo actual
+            if (esHoja(actual)) { // Y si además es un nodo hoja: lo borramos
+                if (padre) // Si tiene padre (no es el nodo raiz)
+                   // Anulamos el puntero que le hace referencia
+                    if (padre->getDer() == actual) padre->setDer(NULL);
+                    else if (padre->getIzq() == actual) padre->setIzq(NULL);
+                delete actual; // Borrar el nodo
+                actual = NULL;
+                // El nodo padre del actual puede ser ahora un nodo hoja, por lo tanto su
+                // FE es cero, pero debemos seguir el camino a partir de su padre, si existe.
+                if ((padre->getDer() == actual && padre->getFE() == 1) ||
+                    (padre->getIzq() == actual && padre->getFE() == -1)) {
+                    padre->setFE(0);
+                    actual = padre;
+                    padre = actual->getPadre();
+                }
+                if (padre)
+                    if (padre->getDer() == actual) this->equilibrar(padre, DERECHO, false);
+                    else                         this->equilibrar(padre, IZQUIERDO, false);
+                return true;
+            }
+            else { // Si el valor está en el nodo actual, pero no es hoja
+               // Buscar nodo
+                padre = actual;
+                // Buscar nodo más izquierdo de rama derecha
+                if (actual->getDer()) {
+                    nodo = actual->getDer();
+                    while (nodo->getIzq()) {
+                        padre = nodo;
+                        nodo = nodo->getIzq();
+                    }
+                }
+                // O buscar nodo más derecho de rama izquierda
+                else {
+                    nodo = actual->getIzq();
+                    while (nodo->getDer()) {
+                        padre = nodo;
+                        nodo = nodo->getDer();
+                    }
+                }
+                // Intercambiar valores de no a borrar u nodo encontrado
+                // y continuar, cerrando el bucle. El nodo encontrado no tiene
+                // por qué ser un nodo hoja, cerrando el bucle nos aseguramos
+                // de que sólo se eliminan nodos hoja.
+                aux = actual->getDato();
+                actual->setDato(nodo->getDato());
+                nodo->setDato(aux);
+                actual = nodo;
+            }
+        }
+        else { // Todavía no hemos encontrado el valor, seguir buscándolo
+            padre = actual;
+            if (pdato > actual->getDato()) actual = actual->getDer();
+            else if (pdato < actual->getDato()) actual = actual->getIzq();
+        }
+
+    }
+    return false;
+}
+bool ArbolAVL::buscarEnAVL(int pDato)
+{
+    if (raiz == nullptr)
+    {
+        return false;
+    }
+    else
+    {
+        return buscar(getRaiz(), pDato);
+    }
 }
 
-bool ArbolAVL::buscar(int pdato)
+bool ArbolAVL::buscar(Nodo *nodo,int pdato)
 {
-    return false;
+
+    if (getRaiz() != nullptr && nodo->getDato() != NULL)
+    {
+        if (nodo->getDato() == pdato)
+        {
+            return true;
+        }
+        else if (pdato > nodo->getDato() && nodo->getDer() != nullptr) {
+            return buscar(nodo->getDer(), pdato);
+        }
+        else if (pdato < nodo->getDato() && nodo->getIzq() != nullptr)
+        {
+            return buscar(nodo->getIzq(), pdato);
+        }
+        else
+        {
+            return false;
+        }
+    }
 }
 
 bool ArbolAVL::esHoja(Nodo* pnodo)

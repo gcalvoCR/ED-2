@@ -21,6 +21,8 @@ void insertarEnAVL();
 void mostrarPreOrdenAVL();
 void mostrarInOrdenAVL();
 void mostrarPostOrdenAVL();
+void buscarEnAVL();
+void borrarAVL();
 void insertarEnArbolB();
 void ingresarOrdenArbolB();
 void imprimirListaArbolB();
@@ -53,7 +55,7 @@ int main()
         cout << "2. Arbol B." << endl;
         cout << "3. Arbol B+." << endl;
         cout << "4. Arbol Rojo-Negro." << endl;
-        cout << "0. Salir." << endl;
+        cout << "0. Salir del sistema." << endl;
         cout << "-------------------------------------" << endl;
         cin >> answer;
         system("CLS");
@@ -115,18 +117,20 @@ void menuArbolAVL()
         cout << "ARBOL AVL" << endl;
         cout << "-------------------------------------" << endl;
         cout << "Favor digite una opcion:" << endl;
-        cout << "1. Insertar dato en arbol AVL (AVL)." << endl;
+        cout << "1. Insertar dato en arbol AVL." << endl;
         cout << "2. Mostrar datos en preorden." << endl;
         cout << "3. Mostrar datos en inorden." << endl;
         cout << "4. Mostrar datos en postorden." << endl;
-        cout << "5. Volver al menu principal." << endl;
+        cout << "5. Buscar AVL." << endl;
+        cout << "6. Eliminar AVL" << endl;
+        cout << "7. Volver al menu principal." << endl;
         cout << "-------------------------------------" << endl;
         cin >> answer;
         system("CLS");
 
         menuArbolAVLImp(answer);
 
-        if (answer == 5)
+        if (answer == 7)
         {
             keepLooping = false;
         }
@@ -143,6 +147,7 @@ int menuArbolAVLImp(int answer)
     {
     case 1:
         insertarEnAVL();
+        system("PAUSE");
         break;
     case 2:
         mostrarPreOrdenAVL();
@@ -157,6 +162,14 @@ int menuArbolAVLImp(int answer)
         system("PAUSE");
         break;
     case 5:
+        buscarEnAVL();
+        system("PAUSE");
+        break;
+    case 6:
+        borrarAVL();
+        system("PAUSE");
+        break;
+    case 7:
         break;
     default:
         cout << "Opcion incorrecta. Favor digite de nuevo." << endl;
@@ -395,6 +408,50 @@ void mostrarInOrdenAVL() {
 
 void mostrarPostOrdenAVL() {
     cout << gestor->mostrarPostOrdenAVL() << endl;
+}
+
+void buscarEnAVL() {
+    int input = -1;
+    bool valid = false;
+    do
+    {
+        cout << "Favor digite un numero entero a buscar: " << flush;
+        cin >> input;
+        if (cin.good())
+        {
+            valid = true;
+        }
+        else
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Error. Favor inserte un numero entero." << endl;
+        }
+    } while (!valid);
+
+    cout << gestor->buscarEnAVL(input) << endl;
+}
+
+void borrarAVL() {
+    int input = -1;
+    bool valid = false;
+    do
+    {
+        cout << "Favor digite un numero entero a borrar: " << flush;
+        cin >> input;
+        if (cin.good())
+        {
+            valid = true;
+        }
+        else
+        {
+            cin.clear();
+            cin.ignore(numeric_limits<streamsize>::max(), '\n');
+            cout << "Error. Favor inserte un numero entero." << endl;
+        }
+    } while (!valid);
+
+    cout << gestor->eliminarAVL(input) << endl;
 }
 
 //2. Métodos para menú de árbol B
