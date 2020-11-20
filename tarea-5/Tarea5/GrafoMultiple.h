@@ -17,7 +17,7 @@ class GrafoMultiple {
 public:
     GrafoMultiple();
     string insertar_nodo(char, int);
-    void agrega_arista(TnodoMultiple&, TnodoMultiple&, TaristaMultiple&);
+    void agrega_arista(TnodoMultiple&, TnodoMultiple&, TaristaMultiple&, TaristaMultiple&);
     bool insertar_arista(char, char, int);
     string mostrar_grafo();
 

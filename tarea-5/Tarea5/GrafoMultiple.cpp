@@ -56,7 +56,7 @@ string GrafoMultiple::insertar_nodo(char pDato, int pValor)
 /*                      AGREGAR ARISTA
     funcion que utilizada para agregar la arista a dos nodos
 ---------------------------------------------------------------------*/
-void GrafoMultiple::agrega_arista(TnodoMultiple& aux, TnodoMultiple& aux2, TaristaMultiple& nuevo)
+void GrafoMultiple::agrega_arista(TnodoMultiple& aux, TnodoMultiple& aux2, TaristaMultiple& nuevo, TaristaMultiple& nuevo2)
 {
 
     TaristaMultiple q;
@@ -77,12 +77,11 @@ void GrafoMultiple::agrega_arista(TnodoMultiple& aux, TnodoMultiple& aux2, Taris
         nuevo->sgte = NULL;
         cout << "Arco agregado.";
     }
-
     if (aux2->pdr == NULL)
     {
-        aux2->pdr = nuevo;
-        nuevo->predecesor = aux;
-        nuevo->sgte = NULL;
+        aux2->pdr = nuevo2;
+        nuevo2->predecesor = aux;
+        nuevo2->sgte = NULL;
         cout << "Arco agregado.";
     }
     else
@@ -90,9 +89,9 @@ void GrafoMultiple::agrega_arista(TnodoMultiple& aux, TnodoMultiple& aux2, Taris
         q = aux2->pdr;
         while (q->sgte != NULL)
             q = q->sgte;
-        nuevo->predecesor = aux;
-        q->sgte = nuevo;
-        nuevo->sgte = NULL;
+        nuevo2->predecesor = aux;
+        q->sgte = nuevo2;
+        nuevo2->sgte = NULL;
         cout << "Arco agregado.";
     }
 
@@ -104,6 +103,7 @@ void GrafoMultiple::agrega_arista(TnodoMultiple& aux, TnodoMultiple& aux2, Taris
 bool GrafoMultiple::insertar_arista(char ini, char fin, int pValor)
 {
     TaristaMultiple nuevo = new struct aristaMultiple;
+    TaristaMultiple nuevo2 = new struct aristaMultiple;
     TnodoMultiple aux, aux2;
 
     if (p == NULL)
@@ -112,6 +112,8 @@ bool GrafoMultiple::insertar_arista(char ini, char fin, int pValor)
     }
     nuevo->sgte = NULL;
     nuevo->valor = pValor;
+    nuevo2->sgte = NULL;
+    nuevo2->valor = pValor;
     aux = p;
     aux2 = p;
     while (aux2 != NULL)
@@ -127,7 +129,7 @@ bool GrafoMultiple::insertar_arista(char ini, char fin, int pValor)
     {
         if (aux->nombre == ini)
         {
-            agrega_arista(aux, aux2, nuevo);
+            agrega_arista(aux, aux2, nuevo, nuevo2);
             return true;
         }
 
