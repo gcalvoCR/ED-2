@@ -30,6 +30,12 @@ void eliminarAristaSegundoGrafo();
 void mostrarGrafoSegundoGrafo();
 void mostrarAristasSegundoGrafo();
 bool verificarExistenciaNodoSegundoGrafo(char);
+//Metodos lista multiple
+void menuGrafoListaMultiple();
+int menuGrafoListaMultipleImp(int answer);
+void insertarNodoListaMultiple();
+void insertarAristaListaMultiple();
+void mostrarListaMultiple();
 
 using namespace std;
 
@@ -45,6 +51,7 @@ int main()
         cout << "Favor digite una opcion:" << endl;
         cout << "1. Primer grafo: matriz de adyacencia." << endl;
         cout << "2. Segundo grafo: lista de adyacencia." << endl;
+        cout << "3. Lista encadenada multiple de adyacencia." << endl;
         cout << "0. Salir del sistema." << endl;
         cout << "-------------------------------------" << endl;
         cin >> answer;
@@ -74,6 +81,9 @@ int menuPrincipal(int answer)
         break;
     case 2:
         menuGrafoLista();
+        break;
+    case 3:
+        menuGrafoListaMultiple();
         break;
     case 0:
         cout << "Gracias por usar el sistema." << endl;
@@ -366,4 +376,97 @@ void mostrarAristasSegundoGrafo() {
 bool verificarExistenciaNodoSegundoGrafo(char pVar) {
     bool cond = controller->verificarExistenciaNodoSegundoGrafo(pVar);
     return cond;
+}
+
+//3. Menú para lista de adyacencia multiple
+
+void menuGrafoListaMultiple()
+{
+    int answer;
+    bool keepLooping = true;
+
+    system("CLS");
+    do
+    {
+        system("CLS");
+        cout << "-------------------------------------" << endl;
+        cout << "Lista encadenada multiple de adyacencia" << endl;
+        cout << "-------------------------------------" << endl;
+        cout << "Favor digite una opcion:" << endl;
+        cout << "1. Insertar un nuevo vertice." << endl;
+        cout << "2. Insertar un arco." << endl;
+        cout << "3. Mostrar grafo." << endl;
+        cout << "4. Volver al menu principal." << endl;
+        cout << "-------------------------------------" << endl;
+        cin >> answer;
+        system("CLS");
+
+        menuGrafoListaMultipleImp(answer);
+
+        if (answer == 7)
+        {
+            keepLooping = false;
+        }
+        else
+        {
+            keepLooping = true;
+        }
+    } while (keepLooping);
+}
+
+int menuGrafoListaMultipleImp(int answer)
+{
+    switch (answer)
+    {
+    case 1:
+        insertarNodoListaMultiple();
+        system("PAUSE");
+        break;
+    case 2:
+        insertarAristaListaMultiple();
+        system("PAUSE");
+        break;
+    case 3:
+        mostrarListaMultiple();
+        system("PAUSE");
+        break;
+    case 4:
+        main();
+        break;
+    default:
+        cout << "Opcion incorrecta. Favor digite de nuevo." << endl;
+    }
+
+    return answer;
+}
+
+void insertarNodoListaMultiple() {
+    char nombreNodo;
+    int valorNodo;
+    cout << "Favor insertar nombre de nodo: " << flush;
+    cin >> nombreNodo;
+    cout << "Favor valor de nodo a agregar: " << flush;
+    cin >> valorNodo;
+    cout << controller->insertar_nodo_multiple(nombreNodo, valorNodo) << endl;
+}
+
+void insertarAristaListaMultiple() {
+   
+    char ini, fin;
+    int valorArco;
+    cout << "Ingrese nodo de inicio de la lista de vertices:";
+    cin >> ini;
+    cout << "Ingrese nodo de final de la lista de vertices:";
+    cin >> fin;
+    cout << "Ingrese valor del arco:";
+    cin >> valorArco;
+        
+    cout << controller->insertar_arista_multiple(ini, fin, valorArco) << endl;
+  
+}
+
+void mostrarListaMultiple() {
+ 
+    cout << controller->mostrar_grafo_multiple() << endl;
+    
 }

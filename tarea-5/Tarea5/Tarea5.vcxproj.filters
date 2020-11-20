@@ -27,6 +27,9 @@
     <ClCompile Include="Etiqueta.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="GrafoMultiple.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Controller.h">
@@ -42,6 +45,15 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Arista.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="GrafoMultiple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="AristaMultiple.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="NodoMultiple.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

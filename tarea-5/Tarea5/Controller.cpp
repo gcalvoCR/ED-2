@@ -118,3 +118,27 @@ bool Controller::verificarSegundoGrafoVacio() {
 	bool cond = segundoGrafo.verificarGrafoVacio();
 	return cond;
 }
+
+//3. Métodos para lista multiple de adyacencia
+string Controller::insertar_nodo_multiple(char pDato, int pValor) {
+	string rslt = grafoMult.insertar_nodo(pDato, pValor);
+	return rslt;
+}
+
+string Controller::insertar_arista_multiple(char pInicio, char pFin, int pValor) {
+	bool cond = grafoMult.insertar_arista(pInicio, pFin, pValor);
+	string msg;
+	if (cond) {
+		msg = "Arco agregado con exito.";
+	}
+	else {
+		msg = "Arco no se pudo agregar. Intente de nuevo.";
+	}
+	return msg;
+
+}
+
+string Controller::mostrar_grafo_multiple() {
+	string rslt = grafoMult.mostrar_grafo();
+	return rslt;
+}

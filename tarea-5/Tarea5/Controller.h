@@ -3,6 +3,7 @@
 #ifndef CONTROLLER_H
 #define CONTROLLER_H
 #include "Grafo.h"
+#include "GrafoMultiple.h"
 #include <stdlib.h>
 #include <algorithm>
 #include <cstdlib>
@@ -33,11 +34,14 @@ public:
     string imprimir_nodos_segundoGrafo();
     bool verificarExistenciaNodoSegundoGrafo(char);
     bool verificarSegundoGrafoVacio();
+    //3. Métodos para lista multiple de adyacencia
+    string insertar_nodo_multiple(char, int);
+    string insertar_arista_multiple(char, char, int);
+    string mostrar_grafo_multiple();
 private:
     Grafo* grafo;
     Grafo segundoGrafo;
-
-
+    GrafoMultiple grafoMult;
 };
 
 #endif /* CONTROLLER_H */
