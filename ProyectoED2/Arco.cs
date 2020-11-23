@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Linq;
 using System.Text;
-using System.Threading.Tasks;
 
-namespace Proyecto
+namespace ProyectoED2
 {
     public class Arco
     {
@@ -14,9 +12,12 @@ namespace Proyecto
 
         public Arco()
         {
-            distancia = 0;
-            tiempo = 0;
-            costo = 0;
+            distancia = 1000000;
+            tiempo = 1000000;
+            costo = 1000000;
         }
+
+        public string ToString => $"dist: {distancia}, tiempo: {tiempo}h, costo: {costo}USD";
+
     }
 }
