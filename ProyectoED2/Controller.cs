@@ -88,7 +88,7 @@
 
         public string showMinimumPath(string pStartingPoint, string pEndingPoint)
         {
-            return grafo.showMinPathUsingDijkstra(pStartingPoint, pEndingPoint);
+            return grafo.caminoMinimoUsandoDijkstra(pStartingPoint, pEndingPoint);
         }
     }
 }

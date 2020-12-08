@@ -126,69 +126,90 @@ namespace ProyectoED2
             return minIndex;
         }
 
-        public string recorrido(int[] pParent, int pIndex)
+        public int DistanciaMinima(int[] pDistancia, bool[] pSptSet)
+        {
+            int min = Informacion.DISTANCIA_MAX, minIndex = -1;
+
+            for (int value = 0; value < Informacion.tam; value++)
+            {
+                if (pSptSet[value] == false && pDistancia[value] <= min)
+                {
+                    min = pDistancia[value];
+                    minIndex = value;
+                }
+            }
+
+            return minIndex;
+        }
+
+        public string recorrido(int[] pPadre, int pIndex)
         {
             string text = "";
-            if (pParent[pIndex] == -1)
+            if (pPadre[pIndex] == -1)
                 return "";
 
-            text += recorrido(pParent, pParent[pIndex]);
+            text += recorrido(pPadre, pPadre[pIndex]);
             text += "->" + referenciaUbicacion[pIndex];
             return text;
         }
 
-        public string imprimirRecorrido(int[] pCost, int[] pParent, int pinicio, int pfinal)
+        public string imprimirRecorrido(int[] pDistancia, int[] pCosto, int[] pPadre, int pinicio, int pfinal)
         {
             var text = "";
 
-            text += "\nOrigen -> Destino\t\tCosto\t\t\tCamino\n";
-            for (int destinationIndex = 1; destinationIndex < Informacion.tam; destinationIndex++)
+            text += "******* Informacion Origen -> Destino *******";
+            for (int destinationIndex = 0; destinationIndex < Informacion.tam; destinationIndex++)
             {
                 if (destinationIndex == pfinal)
                 {
-                    text += $"\n{referenciaUbicacion[pinicio]} -> {referenciaUbicacion[destinationIndex]}\t\t{pCost[destinationIndex]}USD\t\t{referenciaUbicacion[pinicio]}";
-                    text += recorrido(pParent, destinationIndex);
-                    text += "";
+                    text += $"\n{referenciaUbicacion[pinicio]} -> {referenciaUbicacion[destinationIndex]}\n";
+                    text += $"Distancia: {pDistancia[destinationIndex]}km\n";
+                    text += $"Costo:     {pCosto[destinationIndex]}USD\n";
+                    text += $"Camino:    {referenciaUbicacion[pinicio]} {recorrido(pPadre, destinationIndex)}\n";
                 }
 
             }
+            text += "*********************************************\n";
             return text;
         }
 
-        public string showMinPathUsingDijkstra(string pStart, string pEnd)
+        public string caminoMinimoUsandoDijkstra(string pInicio, string pFin)
         {
-            int start = ObtenerIndiceDeUbicacion(pStart);
-            int end = ObtenerIndiceDeUbicacion(pEnd);
-            int[] cost = new int[Informacion.tam]; ;
+            int inicio = ObtenerIndiceDeUbicacion(pInicio);
+            int fin = ObtenerIndiceDeUbicacion(pFin);
+            int[] costo = new int[Informacion.tam];
+            int[] distancia = new int[Informacion.tam];
             bool[] sptSet = new bool[Informacion.tam];
             int[] parent = new int[Informacion.tam];
 
             for (int index = 0; index < Informacion.tam; index++)
             {
                 parent[index] = -1;
-                cost[index] = Informacion.DISTANCIA_MAX;
+                distancia[index] = Informacion.DISTANCIA_MAX;
                 sptSet[index] = false;
             }
 
-            cost[start] = 0;
+            costo[inicio] = 0;
+            distancia[inicio] = 0;
 
             for (int count = 0; count < Informacion.tam - 1; count++)
             {
-                int picked = CostoMinimo(cost, sptSet);
+                int picked = DistanciaMinima(distancia, sptSet);
 
                 sptSet[picked] = true;
 
                 for (int other = 0; other < Informacion.tam; other++)
                     if (!sptSet[other] 
                         && matrizAdyacencia[picked, other].costo != Informacion.DISTANCIA_MAX
-                        && (cost[picked] + matrizAdyacencia[picked, other].costo) < cost[other])
+                        && (distancia[picked] + matrizAdyacencia[picked, other].distancia) < distancia[other])
                     {
                         parent[other] = picked;
-                        cost[other] = cost[picked] + matrizAdyacencia[picked, other].costo;
+                        distancia[other] = distancia[picked] + matrizAdyacencia[picked, other].distancia;
+                        costo[other] = costo[picked] + matrizAdyacencia[picked, other].costo;
                     }
             }
 
-            return imprimirRecorrido(cost, parent, start, end);
+            return imprimirRecorrido(distancia, costo, parent, inicio, fin);
         }
 
         public int ObtenerIndiceDeUbicacion(string pubicacion)

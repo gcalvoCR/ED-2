@@ -88,7 +88,7 @@ namespace ProyectoED2
                 case 5:
                     mostrarRecorridoMinimo();
                     break;
-                case 6:
+                case 0:
                     Console.WriteLine("Gracias por usar el sistema.");
                     Console.WriteLine();
                     break;
@@ -112,7 +112,7 @@ namespace ProyectoED2
         public static void insertarInformacionArcos()
         {
 
-            for(var i = 0; i < 45; i++) {
+            for(var i = 0; i < Informacion.arcos.GetLength(0); i++) {
                 controller.InsertarEnMatriz(Informacion.arcos[i,0], Informacion.arcos[i, 1], Informacion.arcos[i, 2], Informacion.arcos[i, 3], Informacion.arcos[i, 4]);
             }
              
